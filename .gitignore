@@ -1,0 +1,4 @@
+/vendor
+/nbproject
+/tests/output
+/composer.lock
