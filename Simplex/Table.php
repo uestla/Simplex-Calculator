@@ -257,9 +257,17 @@ class Table
 	/** @return Table */
 	function nextStep()
 	{
+		if ($this->z2 !== NULL && !$this->hasHelperInBasis()) {
+			$this->removeHelpers();
+		}
+
 		$newrows = array();
 		$keycol = $this->getKeyColumn();
 		$keyrow = $this->getKeyRow();
+
+		if ($keycol === NULL || $keyrow === NULL) {
+			return $this;
+		}
 
 		foreach ($this->rows as $row) {
 			$rowset = array();
@@ -326,6 +334,37 @@ class Table
 		}
 
 		return $this;
+	}
+
+
+
+	/** @return void */
+	private function removeHelpers()
+	{
+		$this->z2 = NULL;
+
+		$newrows = array();
+		foreach ($this->rows as $row) {
+			$newrow = array();
+			foreach ($row->getSet() as $v => $c) {
+				if ($v[0] !== 'y') {
+					$newrow[$v] = $c;
+				}
+			}
+
+			$newrows[] = new TableRow($row->getVar(), $newrow, $row->getB());
+		}
+
+		$this->rows = $newrows;
+
+		$newz = array();
+		foreach ($this->z->getSet() as $var => $coeff) {
+			if ($var[0] !== 'y') {
+				$newz[$var] = $coeff;
+			}
+		}
+
+		$this->z = new TableRow($this->z->getVar(), $newz, $this->z->getB());
 	}
 
 }
