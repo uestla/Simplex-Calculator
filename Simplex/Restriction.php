@@ -21,6 +21,8 @@ class Restriction extends VariableSet
 	/** @var Fraction */
 	private $limit;
 
+
+
 	const TYPE_EQ = 1;
 	const TYPE_LOE = 2;
 	const TYPE_GOE = 4;

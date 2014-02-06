@@ -20,6 +20,10 @@ class Solver
 
 
 
+	const MAX_STEPS = 16;
+
+
+
 	/** @param  Task $task */
 	function __construct(Task $task)
 	{
@@ -51,7 +55,7 @@ class Solver
 			$tbl = unserialize(serialize($tbl));
 			$this->steps[] = $tbl->nextStep();
 
-			if (count($this->steps) > 10) {
+			if (count($this->steps) > self::MAX_STEPS) {
 				break ;
 			}
 		}
