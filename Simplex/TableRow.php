@@ -57,6 +57,8 @@ class TableRow extends VariableSet
 	/** Deep copy */
 	function __clone()
 	{
+		parent::__clone();
+
 		$this->b = clone $this->b;
 	}
 
