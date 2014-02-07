@@ -6,7 +6,7 @@
  * Copyright (c) 2014 Petr Kessler (http://kesspess.1991.cz)
  *
  * @license  MIT
- * @link     https://github.com/uestla/Dual-Simplex-Calculator
+ * @link     https://github.com/uestla/Simplex-Calculator
  */
 
 namespace Simplex;
