@@ -94,4 +94,12 @@ class Restriction extends VariableSet
 				: ($this->type === self::TYPE_LOE ? "\xe2\x89\xa4" : "\xe2\x89\xa5");
 	}
 
+
+
+	/** Deep copy */
+	function __clone()
+	{
+		$this->limit = clone $this->limit;
+	}
+
 }

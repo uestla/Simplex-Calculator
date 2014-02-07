@@ -85,4 +85,14 @@ class VariableSet
 		return $this->set[$var];
 	}
 
+
+
+	/** Deep copy */
+	function __clone()
+	{
+		foreach ($this->set as $var => $coeff) {
+			$this->set[$var] = clone $coeff;
+		}
+	}
+
 }

@@ -39,4 +39,14 @@ class Func extends VariableSet
 		return $this->value;
 	}
 
+
+
+	/** Deep copy */
+	function __clone()
+	{
+		if (is_object($this->value)) {
+			$this->value = clone $this->value;
+		}
+	}
+
 }

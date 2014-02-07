@@ -188,7 +188,7 @@ class Table
 			} else {
 				foreach ($this->solution as $var => $value) {
 					if ($value->isEqualTo(0) && !in_array($var, $this->basis, TRUE)) {
-						$clone = unserialize(serialize($this));
+						$clone = clone $this;
 						$solution = $clone->nextStep()->getSolution();
 
 						foreach ($clone->nextStep()->getSolution() as $v => $val) {
@@ -365,6 +365,22 @@ class Table
 		}
 
 		$this->z = new TableRow($this->z->getVar(), $newz, $this->z->getB());
+	}
+
+
+
+	/** Deep copy */
+	function __clone()
+	{
+		foreach ($this->rows as $key => $row) {
+			$this->rows[$key] = clone $row;
+		}
+
+		$this->z = clone $this->z;
+
+		if (is_object($this->z2)) {
+			$this->z2 = clone $this->z2;
+		}
 	}
 
 }

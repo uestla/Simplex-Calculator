@@ -174,4 +174,16 @@ class Task
 		return $table;
 	}
 
+
+
+	/** Deep copy */
+	function __clone()
+	{
+		$this->function = clone $this->function;
+
+		foreach ($this->restrictions as $key => $restriction) {
+			$this->restrictions[$key] = clone $restriction;
+		}
+	}
+
 }

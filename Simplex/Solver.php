@@ -44,15 +44,15 @@ class Solver
 	/** @return void */
 	private function solve()
 	{
-		$t = unserialize(serialize(reset($this->steps)));
+		$t = clone reset($this->steps);
 		$this->steps[] = $t->fixRightSides();
 
-		$t = unserialize(serialize($t));
+		$t = clone $t;
 		$this->steps[] = $t->fixNonEquations();
 
 		$this->steps[] = $tbl = $t->toTable();
 		while (!$tbl->isSolved()) {
-			$tbl = unserialize(serialize($tbl));
+			$tbl = clone $tbl;
 			$this->steps[] = $tbl->nextStep();
 
 			if (count($this->steps) > self::MAX_STEPS) {
