@@ -49,7 +49,7 @@ class Task
 	function addRestriction(Restriction $r)
 	{
 		if ($r->getVariableList() !== $this->function->getVariableList()) {
-			throw new \Exception;
+			throw new \InvalidArgumentException("Restriction variables don't match the objective function variables.");
 		}
 
 		$this->restrictions[] = $r;
@@ -144,7 +144,7 @@ class Task
 			$zcoeffs[$var] = $coeff->multiply(-1);
 		}
 
-		$z = new Func($zcoeffs);
+		$z = new ValueFunc($zcoeffs, 0);
 
 		$z2b = Fraction::create(0);
 		$z2coeffs = array();
@@ -162,7 +162,7 @@ class Task
 			}
 		}
 
-		$z2 = count($z2coeffs) ? new Func($z2coeffs, $z2b) : NULL;
+		$z2 = count($z2coeffs) ? new ValueFunc($z2coeffs, $z2b) : NULL;
 
 		$table = new Table($z, $z2);
 		foreach ($this->basismap as $var => $idx) {

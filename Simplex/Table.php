@@ -36,11 +36,15 @@ class Table
 
 
 	/**
-	 * @param  Func $z
-	 * @param  Func $z2
+	 * @param  ValueFunc $z
+	 * @param  ValueFunc $z2
 	 */
-	function __construct(Func $z, Func $z2 = NULL)
+	function __construct(ValueFunc $z, ValueFunc $z2 = NULL)
 	{
+		if ($z2 !== NULL && $z2->getVariableList() !== $z->getVariableList()) {
+			throw new \InvalidArgumentException("Variables of both objective functions don't match.");
+		}
+
 		$this->z = new TableRow('z', $z->getSet(), 0);
 		$this->z2 = $z2 ? new TableRow('z\'', $z2->getSet(), $z2->getValue()) : NULL;
 	}
@@ -87,7 +91,7 @@ class Table
 	{
 		if ($row->getVariableList() !== $this->z->getVariableList()
 				|| ($this->z2 !== NULL && $row->getVariableList() !== $this->z2->getVariableList())) {
-			throw new \Exception;
+			throw new \InvalidArgumentException("Row variables don't match the objective function variables.");
 		}
 
 		$this->rows[] = $row;

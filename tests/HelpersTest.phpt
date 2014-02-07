@@ -5,6 +5,7 @@ use Simplex\Helpers;
 
 require_once __DIR__ . '/bootstrap.php';
 
+
 Assert::true(Helpers::isInt('0785'));
 Assert::true(Helpers::isInt('-788'));
 Assert::true(Helpers::isInt('-788e8'));
