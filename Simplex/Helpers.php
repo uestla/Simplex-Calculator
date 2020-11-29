@@ -36,17 +36,20 @@ class Helpers
 		if ($a === 0) return abs($b);
 		if ($b === 0) return abs($a);
 
-		while ($a !== $b) {
-			if ($a > $b) {
-				$a -= $b;
-
-			} else {
-				$b -= $a;
-			}
-		}
-
-		return abs($a);
+        return abs(self::gcdRecursive($a, $b));
 	}
+
+
+
+    /**
+     * @param  int $a
+     * @param  int $b
+     * @return int
+     */
+    private static function gcdRecursive($a, $b)
+    {
+        return ($a % $b) ? self::gcdRecursive($b,$a % $b) : $b;
+    }
 
 
 

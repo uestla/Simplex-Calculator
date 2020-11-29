@@ -5,6 +5,7 @@ use Simplex\Helpers;
 
 require_once __DIR__ . '/bootstrap.php';
 
+set_time_limit(5);
 
 Assert::true(Helpers::isInt('0785'));
 Assert::true(Helpers::isInt('-788'));
@@ -25,6 +26,7 @@ Assert::equal(3, Helpers::gcd(-6, -27));
 
 Assert::equal(1, Helpers::gcd(1, 24));
 Assert::equal(21, Helpers::gcd(0, 21));
+Assert::equal(256, Helpers::gcd(1400000000000000256, 100000000000000000));
 
 Assert::exception(function () {
 	Helpers::gcd(0, 0);
