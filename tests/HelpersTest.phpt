@@ -5,7 +5,6 @@ use Simplex\Helpers;
 
 require_once __DIR__ . '/bootstrap.php';
 
-set_time_limit(5);
 
 Assert::true(Helpers::isInt('0785'));
 Assert::true(Helpers::isInt('-788'));
