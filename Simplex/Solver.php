@@ -17,16 +17,18 @@ class Solver
 
 	/** @var array */
 	private $steps = array();
-
-
-
-	const MAX_STEPS = 16;
+	private $max_steps = 16;
 
 
 
 	/** @param  Task $task */
-	function __construct(Task $task)
+	/** @param int $maxSteps (optional) */
+	function __construct(Task $task, int $maxSteps = null)
 	{
+		if ($maxSteps !== null) {
+			$this->max_steps = $maxSteps;
+		}
+
 		$this->steps[] = $task;
 		$this->solve();
 	}
@@ -37,6 +39,14 @@ class Solver
 	function getSteps()
 	{
 		return $this->steps;
+	}
+
+
+
+	/** @return int */
+	function getMaxSteps()
+	{
+		return $this->max_steps;
 	}
 
 
@@ -55,7 +65,7 @@ class Solver
 			$tbl = clone $tbl;
 			$this->steps[] = $tbl->nextStep();
 
-			if (count($this->steps) > self::MAX_STEPS) {
+			if (count($this->steps) > $this->getMaxSteps()) {
 				break ;
 			}
 		}
