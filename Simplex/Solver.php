@@ -25,8 +25,7 @@ class Solver
 
 	/**
 	 * @param  Task $task
-	 *
- 	 * @param int $maxSteps
+ 	 * @param  int $maxSteps
 	 */
 	function __construct(Task $task, $maxSteps = 16)
 	{
