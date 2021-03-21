@@ -29,6 +29,10 @@ $f = new Fraction(8, 1/4);
 Assert::equal('32', (string) $f);
 
 
+$f = new Fraction(0.14);
+Assert::equal('7/50', (string) $f);
+
+
 $a = new Fraction(1, 4);
 $b = new Fraction(2, 3);
 Assert::equal('11/12', (string) $a->add($b));

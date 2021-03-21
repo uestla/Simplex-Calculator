@@ -259,7 +259,7 @@ class Fraction
 
 		$decpart = (float) ($n - (int) $n);
 		$mlp = pow(10, strlen($decpart) - 2 - ($n < 0 ? 1 : 0));
-		return new self($n * $mlp, $mlp);
+		return new self((int) ($n * $mlp), $mlp);
 	}
 
 }
