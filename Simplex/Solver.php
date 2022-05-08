@@ -1,72 +1,60 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the SimplexCalculator library
  *
  * Copyright (c) 2014 Petr Kessler (http://kesspess.1991.cz)
  *
  * @license  MIT
+ *
  * @link     https://github.com/uestla/Simplex-Calculator
  */
 
 namespace Simplex;
 
-
 class Solver
 {
+    /** @var array */
+    private array $steps = [];
 
-	/** @var array */
-	private $steps = array();
+    private int $maxSteps;
 
-	/** @var int */
-	private $maxSteps;
+    public function __construct(Task $task, int $maxSteps = 16)
+    {
+        $this->maxSteps = (int) $maxSteps;
+        $this->steps[] = $task;
 
+        $this->solve();
+    }
 
+    /** @return array */
+    public function getSteps(): array
+    {
+        return $this->steps;
+    }
 
-	/**
-	 * @param  Task $task
- 	 * @param  int $maxSteps
-	 */
-	function __construct(Task $task, $maxSteps = 16)
-	{
-		$this->maxSteps = (int) $maxSteps;
-		$this->steps[] = $task;
+    private function solve(): void
+    {
+        $t = clone reset($this->steps);
+        $this->steps[] = $t->fixRightSides();
 
-		$this->solve();
-	}
+        $t = clone $t;
+        $this->steps[] = $t->fixNonEquations();
 
+        $this->steps[] = $tbl = $t->toTable();
+        while (! $tbl->isSolved()) {
+            $tbl = clone $tbl;
+            $this->steps[] = $tbl->nextStep();
 
+            if (count($this->steps) > $this->maxSteps) {
+                break;
+            }
+        }
 
-	/** @return array */
-	function getSteps()
-	{
-		return $this->steps;
-	}
-
-
-
-	/** @return void */
-	private function solve()
-	{
-		$t = clone reset($this->steps);
-		$this->steps[] = $t->fixRightSides();
-
-		$t = clone $t;
-		$this->steps[] = $t->fixNonEquations();
-
-		$this->steps[] = $tbl = $t->toTable();
-		while (!$tbl->isSolved()) {
-			$tbl = clone $tbl;
-			$this->steps[] = $tbl->nextStep();
-
-			if (count($this->steps) > $this->maxSteps) {
-				break ;
-			}
-		}
-
-		if ($tbl->hasAlternativeSolution()) {
-			$this->steps[] = $tbl->getAlternativeSolution();
-		}
-	}
-
+        if ($tbl->hasAlternativeSolution()) {
+            $this->steps[] = $tbl->getAlternativeSolution();
+        }
+    }
 }

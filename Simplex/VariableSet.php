@@ -1,98 +1,76 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the SimplexCalculator library
  *
  * Copyright (c) 2014 Petr Kessler (http://kesspess.1991.cz)
  *
  * @license  MIT
+ *
  * @link     https://github.com/uestla/Simplex-Calculator
  */
 
 namespace Simplex;
 
-
 class VariableSet
 {
+    /** @var array */
+    protected array $set;
 
-	/** @var array */
-	protected $set;
+    /** @param  array $set [ varname => fraction ] */
+    public function __construct(array $set)
+    {
+        foreach ($set as $var => $coeff) {
+            $set[$var] = Fraction::create($coeff);
+        }
 
+        ksort($set);
+        $this->set = $set;
+    }
 
+    /** Deep copy */
+    public function __clone()
+    {
+        foreach ($this->set as $var => $coeff) {
+            $this->set[$var] = clone $coeff;
+        }
+    }
 
-	/** @param  array $set [ varname => fraction ] */
-	function __construct(array $set)
-	{
-		foreach ($set as $var => $coeff) {
-			$set[$var] = Fraction::create($coeff);
-		}
+    /** @return array */
+    public function getSet(): array
+    {
+        return $this->set;
+    }
 
-		ksort($set);
-		$this->set = $set;
-	}
+    /** @return Fraction|NULL */
+    public function getMin(): ?Fraction
+    {
+        $min = null;
 
+        foreach ($this->set as $var => $coeff) {
+            if ($min === null || $coeff->isLowerThan($min)) {
+                $min = $coeff;
+            }
+        }
 
+        return $min;
+    }
 
-	/** @return array */
-	function getSet()
-	{
-		return $this->set;
-	}
+    /** @return array<string> */
+    public function getVariableList(): array
+    {
+        return array_keys($this->set);
+    }
 
+    public function has(string $var): bool
+    {
+        return isset($this->set[$var]);
+    }
 
-
-	/** @return Fraction|NULL */
-	function getMin()
-	{
-		$min = NULL;
-
-		foreach ($this->set as $var => $coeff) {
-			if ($min === NULL || $coeff->isLowerThan($min)) {
-				$min = $coeff;
-			}
-		}
-
-		return $min;
-	}
-
-
-
-	/** @return string[] */
-	function getVariableList()
-	{
-		return array_keys($this->set);
-	}
-
-
-
-	/**
-	 * @param  string $var
-	 * @return bool
-	 */
-	function has($var)
-	{
-		return isset($this->set[$var]);
-	}
-
-
-
-	/**
-	 * @param  string $var
-	 * @return Fraction
-	 */
-	function get($var)
-	{
-		return $this->set[$var];
-	}
-
-
-
-	/** Deep copy */
-	function __clone()
-	{
-		foreach ($this->set as $var => $coeff) {
-			$this->set[$var] = clone $coeff;
-		}
-	}
-
+    public function get(string $var): Fraction
+    {
+        return $this->set[$var];
+    }
 }
