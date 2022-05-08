@@ -2,3 +2,5 @@
 /nbproject
 /tests/output
 /composer.lock
+/.idea
+/.phpunit.result.cache

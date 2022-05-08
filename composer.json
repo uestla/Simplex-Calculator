@@ -1,23 +1,37 @@
-
 {
-	"name": "uestla/simplex-calculator",
-	"type": "library",
-	"description": "Simple tool for linear programming problems solving",
-	"keywords": ["simplex", "algorithm", "linear", "programming"],
-	"homepage": "http://simplex.tode.cz",
-	"license": "MIT",
-	"support": {
-		"issues": "https://github.com/uestla/Simplex-Calculator/issues"
-	},
-	"require": {
-		"php": ">=5.3.0"
-	},
-	"require-dev": {
-		"nette/tester": "@dev"
-	},
-	"autoload": {
-		"psr-0": {
-			"Simplex": "/"
-		}
-	}
+  "name": "uestla/simplex-calculator",
+  "type": "library",
+  "description": "Simple tool for linear programming problems solving",
+  "keywords": [
+    "simplex",
+    "algorithm",
+    "linear",
+    "programming"
+  ],
+  "homepage": "http://simplex.tode.cz",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/uestla/Simplex-Calculator/issues"
+  },
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "nette/tester": "@dev",
+    "phpunit/phpunit": "^9.3.3",
+    "nunomaduro/phpinsights": "^2.3"
+  },
+  "autoload": {
+    "psr-0": {
+      "Simplex": "/"
+    },
+    "psr-4": {
+      "Simplex\\": "Simplex"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
 }
