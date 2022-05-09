@@ -1,65 +1,51 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the SimplexCalculator library
  *
  * Copyright (c) 2014 Petr Kessler (http://kesspess.1991.cz)
  *
  * @license  MIT
+ *
  * @link     https://github.com/uestla/Simplex-Calculator
  */
 
 namespace Simplex;
 
-
 class TableRow extends VariableSet
 {
+    private string $var;
 
-	/** @var string */
-	private $var;
+    private Fraction $b;
 
-	/** @var Fraction */
-	private $b;
+    /**
+     * @param array $set
+     */
+    public function __construct(string $var, array $set, $b)
+    {
+        parent::__construct($set);
 
+        $this->var = (string)$var;
+        $this->b = Fraction::create($b);
+    }
 
+    /** Deep copy */
+    public function __clone()
+    {
+        parent::__clone();
 
-	/**
-	 * @param  string $var
-	 * @param  array $set
-	 * @param  Fraction|numeric $b
-	 */
-	function __construct($var, array $set, $b)
-	{
-		parent::__construct($set);
+        $this->b = clone $this->b;
+    }
 
-		$this->var = (string) $var;
-		$this->b = Fraction::create($b);
-	}
+    public function getVar(): string
+    {
+        return $this->var;
+    }
 
-
-
-	/** @return string */
-	function getVar()
-	{
-		return $this->var;
-	}
-
-
-
-	/** @return Fraction */
-	function getB()
-	{
-		return $this->b;
-	}
-
-
-
-	/** Deep copy */
-	function __clone()
-	{
-		parent::__clone();
-
-		$this->b = clone $this->b;
-	}
-
+    public function getB(): Fraction
+    {
+        return $this->b;
+    }
 }

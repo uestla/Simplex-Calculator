@@ -1,0 +1,1019 @@
+object(Simplex\Solver)#14 (2) {
+  ["steps":"Simplex\Solver":private]=>
+  array(6) {
+    [0]=>
+    object(Simplex\Task)#5 (3) {
+      ["function":"Simplex\Task":private]=>
+      object(Simplex\Func)#3 (1) {
+        ["set":protected]=>
+        array(2) {
+          ["x1"]=>
+          object(Simplex\Fraction)#2 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(1)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#4 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(2)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+        }
+      }
+      ["restrictions":"Simplex\Task":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\Restriction)#6 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(2)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#9 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(24)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(2) {
+            ["x1"]=>
+            object(Simplex\Fraction)#7 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(3)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#8 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\Restriction)#10 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(4)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#13 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(-32)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(2) {
+            ["x1"]=>
+            object(Simplex\Fraction)#11 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(-2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#12 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(-4)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+      }
+      ["basismap":"Simplex\Task":private]=>
+      array(0) {
+      }
+    }
+    [1]=>
+    object(Simplex\Task)#15 (3) {
+      ["function":"Simplex\Task":private]=>
+      object(Simplex\Func)#16 (1) {
+        ["set":protected]=>
+        array(2) {
+          ["x1"]=>
+          object(Simplex\Fraction)#17 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(1)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#18 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(2)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+        }
+      }
+      ["restrictions":"Simplex\Task":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\Restriction)#19 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(2)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#20 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(24)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(2) {
+            ["x1"]=>
+            object(Simplex\Fraction)#7 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(3)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#8 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\Restriction)#21 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(2)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#26 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(32)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(2) {
+            ["x1"]=>
+            object(Simplex\Fraction)#24 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#25 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(4)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+      }
+      ["basismap":"Simplex\Task":private]=>
+      array(0) {
+      }
+    }
+    [2]=>
+    object(Simplex\Task)#22 (3) {
+      ["function":"Simplex\Task":private]=>
+      object(Simplex\Func)#33 (1) {
+        ["set":protected]=>
+        array(4) {
+          ["x1"]=>
+          object(Simplex\Fraction)#27 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(1)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#28 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(2)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x3"]=>
+          object(Simplex\Fraction)#34 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x4"]=>
+          object(Simplex\Fraction)#35 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+        }
+      }
+      ["restrictions":"Simplex\Task":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\Restriction)#29 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(1)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#30 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(24)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#7 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(3)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#8 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#23 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#36 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\Restriction)#37 (3) {
+          ["type":"Simplex\Restriction":private]=>
+          int(1)
+          ["limit":"Simplex\Restriction":private]=>
+          object(Simplex\Fraction)#32 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(32)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#24 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#25 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(4)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#38 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#39 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+      }
+      ["basismap":"Simplex\Task":private]=>
+      array(2) {
+        ["x3"]=>
+        int(0)
+        ["x4"]=>
+        int(1)
+      }
+    }
+    [3]=>
+    object(Simplex\Table)#46 (6) {
+      ["rows":"Simplex\Table":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\TableRow)#49 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x3"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#30 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(24)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#7 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(3)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#8 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#23 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#36 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\TableRow)#50 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x4"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#32 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(32)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#24 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#25 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(4)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#38 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#39 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+          }
+        }
+      }
+      ["z":"Simplex\Table":private]=>
+      object(Simplex\TableRow)#47 (3) {
+        ["var":"Simplex\TableRow":private]=>
+        string(1) "z"
+        ["b":"Simplex\TableRow":private]=>
+        object(Simplex\Fraction)#48 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(0)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["set":protected]=>
+        array(4) {
+          ["x1"]=>
+          object(Simplex\Fraction)#40 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(-1)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#41 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(-2)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x3"]=>
+          object(Simplex\Fraction)#42 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x4"]=>
+          object(Simplex\Fraction)#43 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+        }
+      }
+      ["z2":"Simplex\Table":private]=>
+      NULL
+      ["basis":"Simplex\Table":private]=>
+      array(2) {
+        [0]=>
+        string(2) "x3"
+        [1]=>
+        string(2) "x4"
+      }
+      ["solution":"Simplex\Table":private]=>
+      NULL
+      ["alternative":"Simplex\Table":private]=>
+      NULL
+    }
+    [4]=>
+    object(Simplex\Table)#45 (6) {
+      ["rows":"Simplex\Table":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\TableRow)#31 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x3"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#67 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(8)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#70 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(2)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#71 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#72 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#73 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(-1)
+              ["d":"Simplex\Fraction":private]=>
+              int(2)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\TableRow)#54 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x2"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#74 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(8)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#75 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(2)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#76 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#77 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#78 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(4)
+            }
+          }
+        }
+      }
+      ["z":"Simplex\Table":private]=>
+      object(Simplex\TableRow)#79 (3) {
+        ["var":"Simplex\TableRow":private]=>
+        string(1) "z"
+        ["b":"Simplex\TableRow":private]=>
+        object(Simplex\Fraction)#85 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(16)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["set":protected]=>
+        array(4) {
+          ["x1"]=>
+          object(Simplex\Fraction)#68 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#81 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x3"]=>
+          object(Simplex\Fraction)#82 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x4"]=>
+          object(Simplex\Fraction)#83 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(1)
+            ["d":"Simplex\Fraction":private]=>
+            int(2)
+          }
+        }
+      }
+      ["z2":"Simplex\Table":private]=>
+      NULL
+      ["basis":"Simplex\Table":private]=>
+      array(4) {
+        [0]=>
+        string(2) "x3"
+        [1]=>
+        string(2) "x4"
+        [2]=>
+        string(2) "x3"
+        [3]=>
+        string(2) "x2"
+      }
+      ["solution":"Simplex\Table":private]=>
+      array(4) {
+        ["x1"]=>
+        object(Simplex\Fraction)#61 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(0)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x2"]=>
+        object(Simplex\Fraction)#74 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(8)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x3"]=>
+        object(Simplex\Fraction)#67 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(8)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x4"]=>
+        object(Simplex\Fraction)#66 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(0)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+      }
+      ["alternative":"Simplex\Table":private]=>
+      object(Simplex\Table)#80 (6) {
+        ["rows":"Simplex\Table":private]=>
+        array(2) {
+          [0]=>
+          object(Simplex\TableRow)#86 (3) {
+            ["var":"Simplex\TableRow":private]=>
+            string(2) "x1"
+            ["b":"Simplex\TableRow":private]=>
+            object(Simplex\Fraction)#103 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(4)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["set":protected]=>
+            array(4) {
+              ["x1"]=>
+              object(Simplex\Fraction)#57 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(1)
+                ["d":"Simplex\Fraction":private]=>
+                int(1)
+              }
+              ["x2"]=>
+              object(Simplex\Fraction)#58 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(0)
+                ["d":"Simplex\Fraction":private]=>
+                int(1)
+              }
+              ["x3"]=>
+              object(Simplex\Fraction)#59 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(1)
+                ["d":"Simplex\Fraction":private]=>
+                int(2)
+              }
+              ["x4"]=>
+              object(Simplex\Fraction)#60 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(-1)
+                ["d":"Simplex\Fraction":private]=>
+                int(4)
+              }
+            }
+          }
+          [1]=>
+          object(Simplex\TableRow)#53 (3) {
+            ["var":"Simplex\TableRow":private]=>
+            string(2) "x2"
+            ["b":"Simplex\TableRow":private]=>
+            object(Simplex\Fraction)#95 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(6)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["set":protected]=>
+            array(4) {
+              ["x1"]=>
+              object(Simplex\Fraction)#65 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(0)
+                ["d":"Simplex\Fraction":private]=>
+                int(1)
+              }
+              ["x2"]=>
+              object(Simplex\Fraction)#44 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(1)
+                ["d":"Simplex\Fraction":private]=>
+                int(1)
+              }
+              ["x3"]=>
+              object(Simplex\Fraction)#51 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(-1)
+                ["d":"Simplex\Fraction":private]=>
+                int(4)
+              }
+              ["x4"]=>
+              object(Simplex\Fraction)#52 (2) {
+                ["n":"Simplex\Fraction":private]=>
+                int(3)
+                ["d":"Simplex\Fraction":private]=>
+                int(8)
+              }
+            }
+          }
+        }
+        ["z":"Simplex\Table":private]=>
+        object(Simplex\TableRow)#87 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(1) "z"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#110 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(16)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#64 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#62 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#63 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#107 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(2)
+            }
+          }
+        }
+        ["z2":"Simplex\Table":private]=>
+        NULL
+        ["basis":"Simplex\Table":private]=>
+        array(8) {
+          [0]=>
+          string(2) "x3"
+          [1]=>
+          string(2) "x4"
+          [2]=>
+          string(2) "x3"
+          [3]=>
+          string(2) "x2"
+          [4]=>
+          string(2) "x1"
+          [5]=>
+          string(2) "x2"
+          [6]=>
+          string(2) "x1"
+          [7]=>
+          string(2) "x2"
+        }
+        ["solution":"Simplex\Table":private]=>
+        array(4) {
+          ["x1"]=>
+          object(Simplex\Fraction)#103 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(4)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#95 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(6)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x3"]=>
+          object(Simplex\Fraction)#100 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x4"]=>
+          object(Simplex\Fraction)#102 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+        }
+        ["alternative":"Simplex\Table":private]=>
+        NULL
+      }
+    }
+    [5]=>
+    object(Simplex\Table)#80 (6) {
+      ["rows":"Simplex\Table":private]=>
+      array(2) {
+        [0]=>
+        object(Simplex\TableRow)#86 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x1"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#103 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(4)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#57 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#58 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#59 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(2)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#60 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(-1)
+              ["d":"Simplex\Fraction":private]=>
+              int(4)
+            }
+          }
+        }
+        [1]=>
+        object(Simplex\TableRow)#53 (3) {
+          ["var":"Simplex\TableRow":private]=>
+          string(2) "x2"
+          ["b":"Simplex\TableRow":private]=>
+          object(Simplex\Fraction)#95 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(6)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["set":protected]=>
+          array(4) {
+            ["x1"]=>
+            object(Simplex\Fraction)#65 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(0)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x2"]=>
+            object(Simplex\Fraction)#44 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(1)
+              ["d":"Simplex\Fraction":private]=>
+              int(1)
+            }
+            ["x3"]=>
+            object(Simplex\Fraction)#51 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(-1)
+              ["d":"Simplex\Fraction":private]=>
+              int(4)
+            }
+            ["x4"]=>
+            object(Simplex\Fraction)#52 (2) {
+              ["n":"Simplex\Fraction":private]=>
+              int(3)
+              ["d":"Simplex\Fraction":private]=>
+              int(8)
+            }
+          }
+        }
+      }
+      ["z":"Simplex\Table":private]=>
+      object(Simplex\TableRow)#87 (3) {
+        ["var":"Simplex\TableRow":private]=>
+        string(1) "z"
+        ["b":"Simplex\TableRow":private]=>
+        object(Simplex\Fraction)#110 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(16)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["set":protected]=>
+        array(4) {
+          ["x1"]=>
+          object(Simplex\Fraction)#64 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x2"]=>
+          object(Simplex\Fraction)#62 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x3"]=>
+          object(Simplex\Fraction)#63 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(0)
+            ["d":"Simplex\Fraction":private]=>
+            int(1)
+          }
+          ["x4"]=>
+          object(Simplex\Fraction)#107 (2) {
+            ["n":"Simplex\Fraction":private]=>
+            int(1)
+            ["d":"Simplex\Fraction":private]=>
+            int(2)
+          }
+        }
+      }
+      ["z2":"Simplex\Table":private]=>
+      NULL
+      ["basis":"Simplex\Table":private]=>
+      array(8) {
+        [0]=>
+        string(2) "x3"
+        [1]=>
+        string(2) "x4"
+        [2]=>
+        string(2) "x3"
+        [3]=>
+        string(2) "x2"
+        [4]=>
+        string(2) "x1"
+        [5]=>
+        string(2) "x2"
+        [6]=>
+        string(2) "x1"
+        [7]=>
+        string(2) "x2"
+      }
+      ["solution":"Simplex\Table":private]=>
+      array(4) {
+        ["x1"]=>
+        object(Simplex\Fraction)#103 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(4)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x2"]=>
+        object(Simplex\Fraction)#95 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(6)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x3"]=>
+        object(Simplex\Fraction)#100 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(0)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+        ["x4"]=>
+        object(Simplex\Fraction)#102 (2) {
+          ["n":"Simplex\Fraction":private]=>
+          int(0)
+          ["d":"Simplex\Fraction":private]=>
+          int(1)
+        }
+      }
+      ["alternative":"Simplex\Table":private]=>
+      NULL
+    }
+  }
+  ["maxSteps":"Simplex\Solver":private]=>
+  int(16)
+}
