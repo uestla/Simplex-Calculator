@@ -68,3 +68,6 @@ $solution = $program->getSolutionFormula();
 $solution->getParam('x1'); // 4
 $solution->getParam(1); // the same as upper 4
 ```
+
+see [example_simplified.php](https://github.com/uestla/Simplex-Calculator/blob/master/example_simplified.php) for
+details.

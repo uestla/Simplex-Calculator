@@ -5,6 +5,7 @@ namespace Simplex\Formulation;
 use Simplex\Func;
 use Simplex\Restriction;
 use Simplex\Solution;
+use Simplex\Solver;
 use Simplex\Task;
 use Simplex\VariableSet;
 
