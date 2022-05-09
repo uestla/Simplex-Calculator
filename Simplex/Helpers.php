@@ -49,7 +49,7 @@ class Helpers
 
     public static function isInt($n): bool
     {
-        return is_numeric($n) && round($n) === (float)$n;
+        return is_numeric($n) && round((float)$n) === (float)$n;
     }
 
     private static function gcdRecursive(int $a, int $b): int

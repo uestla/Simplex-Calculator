@@ -5,13 +5,14 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Simplex\Func;
 use Simplex\Restriction;
+use Simplex\Solution;
 use Simplex\Solver;
 use Simplex\Task;
-use Simplex\VariableSet;
-use Tester\Assert;
 
 class TasksTest extends TestCase
 {
+    use TaskCreator;
+
     public function test_task_restriction_variables(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -28,35 +29,12 @@ class TasksTest extends TestCase
 
     public function test_first_task_function(): void
     {
-        $z = new Func(array(
-            'x1' => 2,
-            'x2' => 1,
-        ));
-
-        $task = new Task($z);
-
-        $task->addRestriction(new Restriction(array(
-            'x1' => 1,
-            'x2' => 1,
-
-        ), Restriction::TYPE_GOE, 2));
-
-        $task->addRestriction(new Restriction(array(
-            'x1' => 1,
-            'x2' => -1,
-
-        ), Restriction::TYPE_EQ, 0));
-
-        $task->addRestriction(new Restriction(array(
-            'x1' => 1,
-            'x2' => -2,
-
-        ), Restriction::TYPE_GOE, -4));
+        $task = $this->getFirstTask();
 
         $solver = new Solver($task);
         $steps = $solver->getSteps();
 
-        $this->assertEquals(3 + 4, count($steps));
+        $this->assertCount(3 + 4, $steps);
 
         $exp = array(
             'x1' => 4,
@@ -70,7 +48,44 @@ class TasksTest extends TestCase
         }
 
         $this->assertFalse(current($steps)->hasAlternativeSolution());
-        $this->assertTrue(current($steps)->getZ()->getB()->isEqualTo(12));
+        $this->assertEquals(12, current($steps)->getZ()->getB()->toFloat());
+    }
+
+    public function test_first_task_with_solution_instance(): void
+    {
+        $task = $this->getFirstTask();
+
+        $solver = new Solver($task);
+        $solution = Solution::instantiateFromSolver($solver);
+
+        $exp = array(
+            'x1' => 4,
+            'x2' => 4,
+            'x3' => 6,
+            'x4' => 0,
+        );
+
+        $this->assertCount(3 + 4, $solution->getSteps());
+        $this->assertEquals($exp, $solution->getSolutionParams());
+        $this->assertEquals(12, $solution->getMax());
+    }
+
+    public function test_first_task_as_builder_solution(): void
+    {
+        $task = $this->getFirstTask();
+
+        $solution = Solution::build($task);
+
+        $exp = array(
+            'x1' => 4,
+            'x2' => 4,
+            'x3' => 6,
+            'x4' => 0,
+        );
+
+        $this->assertCount(3 + 4, $solution->getSteps());
+        $this->assertEquals($exp, $solution->getSolutionParams());
+        $this->assertEquals(12, $solution->getMax());
     }
 
     public function test_second_task_function(): void
@@ -98,7 +113,7 @@ class TasksTest extends TestCase
         $solver = new Solver($task);
         $steps = $solver->getSteps();
 
-        $this->assertEquals(3 + 3, count($steps));
+        $this->assertCount(3 + 3, $steps);
 
         $exp1 = array(
             'x1' => 4,
@@ -162,7 +177,7 @@ class TasksTest extends TestCase
         $solver = new \Simplex\Solver($task);
         $steps = $solver->getSteps();
 
-        $this->assertEquals(3 + 4, count($steps));
+        $this->assertCount(3 + 4, $steps);
 
         $exp = array(
             'x1' => 40,
@@ -211,7 +226,7 @@ class TasksTest extends TestCase
         $solver = new \Simplex\Solver($task);
         $steps = $solver->getSteps();
 
-        $this->assertEquals(3 + 4, count($steps));
+        $this->assertCount(3 + 4, $steps);
         $this->assertFalse(end($steps)->hasSolution());
     }
 }
