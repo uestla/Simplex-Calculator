@@ -312,7 +312,7 @@ class Table
 				$zcoeffs[$v] = $zdvd->multiply($keyrow->get($v))->add($c);
 			}
 
-			$this->$zvar = new TableRow($zvar, $zcoeffs, $zdvd->multiply($keyrow->getB())->add($this->$zvar->getB()));
+			$this->$zvar = new TableRow($this->$zvar->getVar(), $zcoeffs, $zdvd->multiply($keyrow->getB())->add($this->$zvar->getB()));
 		}
 
 		// find solution (if any)
