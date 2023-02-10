@@ -99,6 +99,8 @@ class Restriction extends VariableSet
 	/** Deep copy */
 	function __clone()
 	{
+		parent::__clone();
+
 		$this->limit = clone $this->limit;
 	}
 
