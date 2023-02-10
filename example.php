@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/Simplex/Simplex.php';
+require_once __DIR__ . '/Simplex/simplex.php';
 
 
 $z = new Simplex\Func(array(
