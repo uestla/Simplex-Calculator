@@ -12,7 +12,7 @@
 namespace Simplex;
 
 
-class Helpers
+final class Helpers
 {
 
 	/**
@@ -20,7 +20,7 @@ class Helpers
 	 * @param  int $b
 	 * @return int
 	 */
-	static function gcd($a, $b)
+	public static function gcd($a, $b)
 	{
 		if (!self::isInt($a) || !self::isInt($b)) {
 			throw new \InvalidArgumentException('Integers expected for gcd.');
@@ -40,7 +40,6 @@ class Helpers
 	}
 
 
-
 	/**
 	 * @param  int $a
 	 * @param  int $b
@@ -52,23 +51,21 @@ class Helpers
 	}
 
 
-
 	/**
 	 * @param  numeric $n
 	 * @return int -1, 0, 1
 	 */
-	static function sgn($n)
+	public static function sgn($n)
 	{
 		return $n < 0 ? -1 : ($n > 0 ? 1 : 0);
 	}
-
 
 
 	/**
 	 * @param  numeric $n
 	 * @return bool
 	 */
-	static function isInt($n)
+	public static function isInt($n)
 	{
 		return is_numeric($n) && round($n) === (float) $n;
 	}

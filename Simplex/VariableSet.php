@@ -12,16 +12,15 @@
 namespace Simplex;
 
 
-class VariableSet
+abstract class VariableSet
 {
 
 	/** @var array */
 	protected $set;
 
 
-
 	/** @param  array $set [ varname => fraction ] */
-	function __construct(array $set)
+	public function __construct(array $set)
 	{
 		foreach ($set as $var => $coeff) {
 			$set[$var] = Fraction::create($coeff);
@@ -32,22 +31,20 @@ class VariableSet
 	}
 
 
-
 	/** @return array */
-	function getSet()
+	public function getSet()
 	{
 		return $this->set;
 	}
 
 
-
-	/** @return Fraction|NULL */
-	function getMin()
+	/** @return Fraction|null */
+	public function getMin()
 	{
-		$min = NULL;
+		$min = null;
 
-		foreach ($this->set as $var => $coeff) {
-			if ($min === NULL || $coeff->isLowerThan($min)) {
+		foreach ($this->set as $coeff) {
+			if ($min === null || $coeff->isLowerThan($min)) {
 				$min = $coeff;
 			}
 		}
@@ -56,39 +53,35 @@ class VariableSet
 	}
 
 
-
 	/** @return string[] */
-	function getVariableList()
+	public function getVariableList()
 	{
 		return array_keys($this->set);
 	}
-
 
 
 	/**
 	 * @param  string $var
 	 * @return bool
 	 */
-	function has($var)
+	public function has($var)
 	{
 		return isset($this->set[$var]);
 	}
-
 
 
 	/**
 	 * @param  string $var
 	 * @return Fraction
 	 */
-	function get($var)
+	public function get($var)
 	{
 		return $this->set[$var];
 	}
 
 
-
 	/** Deep copy */
-	function __clone()
+	public function __clone()
 	{
 		foreach ($this->set as $var => $coeff) {
 			$this->set[$var] = clone $coeff;

@@ -12,7 +12,7 @@
 namespace Simplex;
 
 
-class Restriction extends VariableSet
+final class Restriction extends VariableSet
 {
 
 	/** @var int */
@@ -22,11 +22,9 @@ class Restriction extends VariableSet
 	private $limit;
 
 
-
 	const TYPE_EQ = 1;
 	const TYPE_LOE = 2;
 	const TYPE_GOE = 4;
-
 
 
 	/**
@@ -34,7 +32,7 @@ class Restriction extends VariableSet
 	 * @param  int $type
 	 * @param  Fraction|numeric $limit
 	 */
-	function __construct(array $set, $type, $limit)
+	public function __construct(array $set, $type, $limit)
 	{
 		parent::__construct($set);
 
@@ -43,25 +41,22 @@ class Restriction extends VariableSet
 	}
 
 
-
 	/** @return int */
-	function getType()
+	public function getType()
 	{
 		return $this->type;
 	}
 
 
-
 	/** @return Fraction */
-	function getLimit()
+	public function getLimit()
 	{
 		return $this->limit;
 	}
 
 
-
-	/** @return Restriction */
-	function fixRightSide()
+	/** @return self */
+	public function fixRightSide()
 	{
 		if ($this->limit->isLowerThan(0)) {
 			$set = array();
@@ -86,18 +81,16 @@ class Restriction extends VariableSet
 	}
 
 
-
 	/** @return string */
-	function getTypeSign()
+	public function getTypeSign()
 	{
 		return $this->type === self::TYPE_EQ ? '='
 				: ($this->type === self::TYPE_LOE ? "\xe2\x89\xa4" : "\xe2\x89\xa5");
 	}
 
 
-
 	/** Deep copy */
-	function __clone()
+	public function __clone()
 	{
 		parent::__clone();
 

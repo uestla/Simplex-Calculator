@@ -12,5 +12,5 @@
 namespace Simplex;
 
 
-class Func extends VariableSet
+final class Func extends VariableSet
 {}

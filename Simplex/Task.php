@@ -12,7 +12,7 @@
 namespace Simplex;
 
 
-class Task
+final class Task
 {
 
 	/** @var Func */
@@ -25,28 +25,25 @@ class Task
 	private $basismap = array();
 
 
-
 	/** @param  Func $function */
-	function __construct(Func $function)
+	public function __construct(Func $function)
 	{
 		$this->function = $function;
 	}
 
 
-
 	/** @return Func */
-	function getFunction()
+	public function getFunction()
 	{
 		return $this->function;
 	}
 
 
-
 	/**
 	 * @param  Restriction $r
-	 * @return Task
+	 * @return self
 	 */
-	function addRestriction(Restriction $r)
+	public function addRestriction(Restriction $r)
 	{
 		if ($r->getVariableList() !== $this->function->getVariableList()) {
 			throw new \InvalidArgumentException("Restriction variables don't match the objective function variables.");
@@ -57,17 +54,15 @@ class Task
 	}
 
 
-
 	/** @return Restriction[] */
-	function getRestrictions()
+	public function getRestrictions()
 	{
 		return $this->restrictions;
 	}
 
 
-
-	/** @return Task */
-	function fixRightSides()
+	/** @return self */
+	public function fixRightSides()
 	{
 		$restrictions = $this->restrictions;
 		$this->restrictions = array();
@@ -80,9 +75,8 @@ class Task
 	}
 
 
-
-	/** @return Task */
-	function fixNonEquations()
+	/** @return self */
+	public function fixNonEquations()
 	{
 		$newfunc = $this->function->getSet();
 
@@ -135,9 +129,8 @@ class Task
 	}
 
 
-
 	/** @return Table */
-	function toTable()
+	public function toTable()
 	{
 		$zcoeffs = array();
 		foreach ($this->function->getSet() as $var => $coeff) {
@@ -153,7 +146,10 @@ class Task
 			foreach ($r->getSet() as $var => $coeff) {
 				if (strncmp($var, 'y', 1) === 0 && $coeff->isEqualTo(1)) {
 					foreach ($r->getSet() as $v => $c) {
-						!isset($z2coeffs[$v]) && $z2coeffs[$v] = Fraction::create(0);
+						if (!isset($z2coeffs[$v])) {
+							$z2coeffs[$v] = Fraction::create(0);
+						}
+
 						strncmp($v, 'y', 1) !== 0 && ($z2coeffs[$v] = $z2coeffs[$v]->subtract($c));
 					}
 
@@ -162,7 +158,7 @@ class Task
 			}
 		}
 
-		$z2 = count($z2coeffs) ? new ValueFunc($z2coeffs, $z2b) : NULL;
+		$z2 = count($z2coeffs) ? new ValueFunc($z2coeffs, $z2b) : null;
 
 		$table = new Table($z, $z2);
 		foreach ($this->basismap as $var => $idx) {
@@ -175,9 +171,8 @@ class Task
 	}
 
 
-
 	/** Deep copy */
-	function __clone()
+	public function __clone()
 	{
 		$this->function = clone $this->function;
 

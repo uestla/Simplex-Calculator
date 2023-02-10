@@ -7,6 +7,7 @@ use Simplex\Task;
 use Tester\Assert;
 use Simplex\Solver;
 use Tester\TestCase;
+use Simplex\Fraction;
 use Simplex\Restriction;
 
 
@@ -48,19 +49,16 @@ final class SolverTest extends TestCase
 
 		Assert::count(3 + 4, $steps);
 
-		$exp = array(
-			'x1' => 4,
-			'x2' => 4,
-			'x3' => 6,
-			'x4' => 0,
-		);
+		Assert::equal(array(
+			'x1' => new Fraction(4),
+			'x2' => new Fraction(4),
+			'x3' => new Fraction(6),
+			'x4' => new Fraction(0),
 
-		foreach (end($steps)->getSolution() as $var => $coeff) {
-			Assert::true($coeff->isEqualTo($exp[$var]));
-		}
+		), $solver->getSolution());
 
-		Assert::false(current($steps)->hasAlternativeSolution());
-		Assert::true(current($steps)->getZ()->getB()->isEqualTo(12));
+		Assert::count(0, $solver->getAlternativeSolutions());
+		Assert::true(end($steps)->getZ()->getB()->isEqualTo(12));
 	}
 
 
@@ -91,32 +89,28 @@ final class SolverTest extends TestCase
 
 		Assert::count(3 + 3, $steps);
 
-		$exp1 = array(
-			'x1' => 4,
-			'x2' => 6,
-			'x3' => 0,
-			'x4' => 0,
-		);
+		Assert::equal(array(
+			'x1' => new Fraction(0),
+			'x2' => new Fraction(8),
+			'x3' => new Fraction(8),
+			'x4' => new Fraction(0),
 
-		foreach (end($steps)->getSolution() as $var => $coeff) {
-			Assert::true($coeff->isEqualTo($exp1[$var]));
-		}
+		), $solver->getSolution());
 
-		Assert::true(current($steps)->getZ()->getB()->isEqualTo(16));
+		end($steps);
+		Assert::true(prev($steps)->getZ()->getB()->isEqualTo(16));
 
-		$exp2 = array(
-			'x1' => 0,
-			'x2' => 8,
-			'x3' => 8,
-			'x4' => 0,
-		);
+		Assert::equal(array(
+			array(
+				'x1' => new Fraction(4),
+				'x2' => new Fraction(6),
+				'x3' => new Fraction(0),
+				'x4' => new Fraction(0),
+			),
 
-		foreach (prev($steps)->getSolution() as $var => $coeff) {
-			Assert::true($coeff->isEqualTo($exp2[$var]));
-		}
+		), $solver->getAlternativeSolutions());
 
-		Assert::true(current($steps)->hasAlternativeSolution());
-		Assert::true(current($steps)->getZ()->getB()->isEqualTo(16));
+		Assert::true(next($steps)->getZ()->getB()->isEqualTo(16));
 	}
 
 
@@ -156,21 +150,18 @@ final class SolverTest extends TestCase
 
 		Assert::count(3 + 4, $steps);
 
-		$exp = array(
-			'x1' => 40,
-			'x2' => 0,
-			'x3' => 0,
-			'x4' => 0,
-			'x5' => 0,
-			'x6' => 0,
-		);
+		Assert::equal(array(
+			'x1' => new Fraction(40),
+			'x2' => new Fraction(0),
+			'x3' => new Fraction(0),
+			'x4' => new Fraction(0),
+			'x5' => new Fraction(0),
+			'x6' => new Fraction(0),
 
-		foreach (end($steps)->getSolution() as $var => $coeff) {
-			Assert::true($coeff->isEqualTo($exp[$var]));
-		}
+		), $solver->getSolution());
 
-		Assert::false(current($steps)->hasAlternativeSolution());
-		Assert::true(current($steps)->getZ()->getB()->isEqualTo(6000));
+		Assert::count(0, $solver->getAlternativeSolutions());
+		Assert::true(end($steps)->getZ()->getB()->isEqualTo(6000));
 	}
 
 
@@ -205,7 +196,7 @@ final class SolverTest extends TestCase
 		$steps = $solver->getSteps();
 
 		Assert::count(3 + 4, $steps);
-		Assert::false(end($steps)->hasSolution());
+		Assert::false($solver->getSolution());
 	}
 
 }

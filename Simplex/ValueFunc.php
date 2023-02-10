@@ -12,19 +12,18 @@
 namespace Simplex;
 
 
-class ValueFunc extends VariableSet
+final class ValueFunc extends VariableSet
 {
 
 	/** @var Fraction */
 	private $value;
 
 
-
 	/**
 	 * @param  array $set
 	 * @param  Fraction|numeric $value
 	 */
-	function __construct(array $set, $value)
+	public function __construct(array $set, $value)
 	{
 		parent::__construct($set);
 
@@ -32,17 +31,15 @@ class ValueFunc extends VariableSet
 	}
 
 
-
 	/** @return Fraction */
-	function getValue()
+	public function getValue()
 	{
 		return $this->value;
 	}
 
 
-
 	/** Deep copy */
-	function __clone()
+	public function __clone()
 	{
 		parent::__clone();
 
