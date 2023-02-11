@@ -12,6 +12,15 @@ require_once __DIR__ . '/bootstrap.php';
 final class FractionTest extends TestCase
 {
 
+	public function testScientificNotation()
+	{
+		Assert::same('1000', (string) new Fraction('1e3'));
+		Assert::same('1000', (string) new Fraction('1E3'));
+		Assert::same('1000', (string) new Fraction('1E+3'));
+		Assert::same('1000', (string) new Fraction('1E+4', '10'));
+	}
+
+
 	public function testDivisionByZero()
 	{
 		Assert::exception(function () {
@@ -108,6 +117,53 @@ final class FractionTest extends TestCase
 		Assert::true($b->isGreaterThan($a));
 		Assert::false($a->isLowerThan($a));
 		Assert::false($a->isGreaterThan($a));
+	}
+
+
+	/** @dataProvider getFloatsScientificNotation */
+	public function testFloatsScientificNotation($i)
+	{
+		Assert::exception(function () use ($i) {
+			new Fraction($i);
+
+		}, 'InvalidArgumentException', 'Floats with scientific notation are not supported.');
+	}
+
+
+	/** @dataProvider getNonNumericArguments */
+	public function testNonNumericArguments($a)
+	{
+		Assert::exception(function () use ($a) {
+			new Fraction($a);
+
+		}, 'InvalidArgumentException', sprintf('Non-numeric argument "%s".', $a));
+	}
+
+
+	// === data providers =====================================================
+
+	public function getNonNumericArguments()
+	{
+		return array(
+			array('ASDF'),
+			array('1234EF+20'),
+			array('-14BFL'),
+			array(''),
+			array(null),
+			array(true),
+			array(false),
+		);
+	}
+
+
+	public function getFloatsScientificNotation()
+	{
+		return array(
+			array(PHP_INT_MAX + 1),
+			array(- PHP_INT_MAX - 2),
+			array('-1.23e50'),
+			array('-1.23E50'),
+		);
 	}
 
 }

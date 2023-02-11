@@ -58,16 +58,16 @@ final class Restriction extends VariableSet
 	/** @return self */
 	public function fixRightSide()
 	{
-		if ($this->limit->isLowerThan(0)) {
+		if ($this->limit->isLowerThan('0')) {
 			$set = array();
 			foreach ($this->set as $var => $coeff) {
-				$set[$var] = $coeff->multiply(-1);
+				$set[$var] = $coeff->multiply('-1');
 			}
 
 			$type = $this->type === self::TYPE_EQ ? $this->type
 					: ($this->type === self::TYPE_GOE ? self::TYPE_LOE : self::TYPE_GOE);
 
-			$this->limit = $this->limit->multiply(-1);
+			$this->limit = $this->limit->multiply('-1');
 
 		} else {
 			$set = $this->set;

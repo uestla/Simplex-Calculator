@@ -119,12 +119,12 @@ final class Table
 	{
 		if ($this->z2 !== null) {
 			foreach ($this->z2->getSet() as $coeff) {
-				if ($coeff->isLowerThan(0)) {
+				if ($coeff->isLowerThan('0')) {
 					return false;
 				}
 			}
 
-			if ($this->hasHelperInBasis() || !$this->z2->getB()->isEqualTo(0)) {
+			if ($this->hasHelperInBasis() || !$this->z2->getB()->isEqualTo('0')) {
 				$this->solution = false;
 				return true;
 			}
@@ -133,10 +133,10 @@ final class Table
 		$keyval = $this->z->getMin();
 		$keycol = array_search($keyval, $this->z->getSet(), true);
 
-		if ($keyval->isLowerThan(0)) {
+		if ($keyval->isLowerThan('0')) {
 			foreach ($this->rows as $row) {
 				$set = $row->getSet();
-				if ($set[$keycol]->isGreaterThan(0)) {
+				if ($set[$keycol]->isGreaterThan('0')) {
 					return false;
 				}
 			}
@@ -178,7 +178,7 @@ final class Table
 
 			} else {
 				foreach ($this->solution as $var => $value) {
-					if ($value->isEqualTo(0) && !in_array($var, $this->basis, true)) {
+					if ($value->isEqualTo('0') && !in_array($var, $this->basis, true)) {
 						$clone = clone $this;
 
 						foreach ($clone->nextStep()->getSolution() as $v => $val) {
@@ -230,7 +230,7 @@ final class Table
 
 		foreach ($this->rows as $row) {
 			$set = $row->getSet();
-			if ($set[$keycol]->isGreaterThan(0)
+			if ($set[$keycol]->isGreaterThan('0')
 					&& ($mint === null || $row->getB()->divide($set[$keycol])->isLowerThan($mint))) {
 				$mint = $row->getB()->divide($set[$keycol]);
 				$keyrow = $row;
@@ -313,7 +313,7 @@ final class Table
 						}
 					}
 
-					$this->solution[$var] = Fraction::create(0);
+					$this->solution[$var] = new Fraction('0');
 				}
 
 				ksort($this->solution);

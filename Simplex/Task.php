@@ -139,7 +139,7 @@ final class Task
 
 		$z = new ValueFunc($zcoeffs, 0);
 
-		$z2b = Fraction::create(0);
+		$z2b = new Fraction('0');
 		$z2coeffs = array();
 
 		foreach ($this->restrictions as $idx => $r) {
@@ -147,7 +147,7 @@ final class Task
 				if (strncmp($var, 'y', 1) === 0 && $coeff->isEqualTo(1)) {
 					foreach ($r->getSet() as $v => $c) {
 						if (!isset($z2coeffs[$v])) {
-							$z2coeffs[$v] = Fraction::create(0);
+							$z2coeffs[$v] = new Fraction('0');
 						}
 
 						strncmp($v, 'y', 1) !== 0 && ($z2coeffs[$v] = $z2coeffs[$v]->subtract($c));

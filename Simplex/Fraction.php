@@ -15,10 +15,10 @@ namespace Simplex;
 final class Fraction
 {
 
-	/** @var int */
+	/** @var string */
 	private $n;
 
-	/** @var int */
+	/** @var string */
 	private $d;
 
 
@@ -26,25 +26,13 @@ final class Fraction
 	 * @param  numeric $n
 	 * @param  numeric $d
 	 */
-	public function __construct($n, $d = 1)
+	public function __construct($n, $d = '1')
 	{
-		if (Helpers::isInt($n)) {
-			$this->n = (int) $n;
+		list($nn, $nd) = self::factoryParts($n);
+		list($dn, $dd) = self::factoryParts($d);
 
-		} else {
-			$nf = self::fromDecimal($n);
-			$this->n = $nf->getNumerator();
-			$this->d = $nf->getDenominator();
-		}
-
-		if (Helpers::isInt($d)) {
-			$this->d = (int) ($d * ($this->d === null ? 1 : $this->d));
-
-		} else {
-			$df = self::fromDecimal($d);
-			$this->n *= $df->getDenominator();
-			$this->d = ($df->getNumerator() * ($this->d === null ? 1 : $this->d));
-		}
+		$this->n = bcmul($nn, $dd);
+		$this->d = bcmul($nd, $dn);
 
 		$this->canonicalize();
 	}
@@ -64,14 +52,14 @@ final class Fraction
 	}
 
 
-	/** @return int */
+	/** @return string */
 	public function getNumerator()
 	{
 		return $this->n;
 	}
 
 
-	/** @return int */
+	/** @return string */
 	public function getDenominator()
 	{
 		return $this->d;
@@ -81,18 +69,19 @@ final class Fraction
 	/** @return self */
 	public function canonicalize()
 	{
-		if ($this->d === 0) {
+		if ($this->d === '0') {
 			throw new \Exception('Division by zero.');
 		}
 
-		if ($this->d < 0) {
-			$this->n = -$this->n;
-			$this->d = -$this->d;
+		$gcd = Helpers::gcd($this->n, $this->d);
+		$this->n = bcdiv($this->n, $gcd);
+		$this->d = bcdiv($this->d, $gcd);
+
+		if (bccomp($this->d, '0') === -1) {
+			$this->n = bcmul($this->n, '-1');
+			$this->d = bcmul($this->d, '-1');
 		}
 
-		$gcd = Helpers::gcd($this->n, $this->d);
-		$this->n /= $gcd;
-		$this->d /= $gcd;
 		return $this;
 	}
 
@@ -106,7 +95,14 @@ final class Fraction
 	public function add($a)
 	{
 		$a = self::create($a);
-		return new self($this->n * $a->getDenominator() + $this->d * $a->getNumerator(), $this->d * $a->getDenominator());
+
+		return new self(
+			bcadd(
+				bcmul($this->n, $a->getDenominator()),
+				bcmul($this->d, $a->getNumerator())
+			),
+			bcmul($this->d, $a->getDenominator())
+		);
 	}
 
 
@@ -118,7 +114,7 @@ final class Fraction
 	 */
 	public function subtract($a)
 	{
-		return $this->add(self::create($a)->multiply(-1));
+		return $this->add(self::create($a)->multiply('-1'));
 	}
 
 
@@ -131,7 +127,11 @@ final class Fraction
 	public function multiply($a)
 	{
 		$a = self::create($a);
-		return new self($this->n * $a->getNumerator(), $this->d * $a->getDenominator());
+
+		return new self(
+			bcmul($this->n, $a->getNumerator()),
+			bcmul($this->d, $a->getDenominator())
+		);
 	}
 
 
@@ -158,7 +158,10 @@ final class Fraction
 	/** @return self */
 	public function absVal()
 	{
-		return new self($this->sgn() * $this->n, $this->d);
+		return new self(
+			bcmul($this->sgn(), $this->n),
+			$this->d
+		);
 	}
 
 
@@ -171,7 +174,11 @@ final class Fraction
 	public function compare($a)
 	{
 		$a = self::create($a);
-		return Helpers::sgn($this->n * $a->getDenominator() - $a->getNumerator() * $this->d);
+
+		return Helpers::sgn(bcsub(
+			bcmul($this->n, $a->getDenominator()),
+			bcmul($a->getNumerator(), $this->d)
+		));
 	}
 
 
@@ -195,27 +202,10 @@ final class Fraction
 	}
 
 
-	/**
-	 * @param  Fraction|numeric $a
-	 * @return bool
-	 */
-	public function isGreaterThan($a)
-	{
-		return $this->compare($a) === 1;
-	}
-
-
 	/** @return string */
 	public function toString()
 	{
-		return $this->n . ($this->d !== 1 ? '/' . $this->d : '');
-	}
-
-
-	/** @return float */
-	public function toFloat()
-	{
-		return $this->n / $this->d;
+		return $this->n . ($this->d !== '1' ? '/' . $this->d : '');
 	}
 
 
@@ -227,20 +217,57 @@ final class Fraction
 
 
 	/**
-	 * 0.25 => 25/100
-	 *
-	 * @param  float $n
-	 * @return self
+	 * @param  Fraction|numeric $a
+	 * @return bool
 	 */
-	private static function fromDecimal($n)
+	public function isGreaterThan($a)
 	{
-		if (Helpers::isInt($n)) {
-			return new self($n);
+		return $this->compare($a) === 1;
+	}
+
+
+	/** @return float */
+	public function toFloat()
+	{
+		return $this->n / $this->d;
+	}
+
+
+	/**
+	 * @param  numeric $a
+	 * @return array{string, string}
+	 */
+	private function factoryParts($a)
+	{
+		if (!is_numeric($a)) {
+			throw new \InvalidArgumentException(sprintf('Non-numeric argument "%s".', $a));
 		}
 
-		$decpart = ($n - (int) $n);
-		$mlp = pow(10, strlen($decpart) - 2 - ($n < 0 ? 1 : 0));
-		return new self((int) ($n * $mlp), $mlp);
+		$d = '1';
+		$m = '1';
+
+		$expParts = explode('E', str_replace('e', 'E', (string) $a));
+		$dotParts = explode('.', $expParts[0]);
+
+		if (isset($expParts[1], $dotParts[1])) {
+			throw new \InvalidArgumentException('Floats with scientific notation are not supported.');
+		}
+
+		if (isset($expParts[1])) {
+			$m = bcpow('10', $expParts[1], 0);
+		}
+
+		if (isset($dotParts[1])) {
+			$n = implode('', $dotParts);
+			$d = bcpow('10', strlen($dotParts[1]), 0);
+
+		} else {
+			$n = $dotParts[0];
+		}
+
+		$n = bcmul($n, $m, 0);
+
+		return array($n, $d);
 	}
 
 }

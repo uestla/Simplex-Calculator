@@ -16,9 +16,9 @@ final class Helpers
 {
 
 	/**
-	 * @param  int $a
-	 * @param  int $b
-	 * @return int
+	 * @param  numeric $a
+	 * @param  numeric $b
+	 * @return string
 	 */
 	public static function gcd($a, $b)
 	{
@@ -26,48 +26,70 @@ final class Helpers
 			throw new \InvalidArgumentException('Integers expected for gcd.');
 		}
 
-		$a = (int) abs($a);
-		$b = (int) abs($b);
+		$a = (string) $a;
+		$b = (string) $b;
 
-		if ($a === 0 && $b === 0) {
+		$aZero = bccomp($a, '0') === 0;
+		$bZero = bccomp($b, '0') === 0;
+
+		if ($aZero && $bZero) {
 			throw new \InvalidArgumentException('At least one number must not be a zero.');
 		}
 
-		if ($a === 0) return $b;
-		if ($b === 0) return $a;
+		if ($aZero) {
+			return $b;
+		}
 
-		return self::gcdRecursive($a, $b);
+		if ($bZero) {
+			return $b;
+		}
+
+		$gcd = self::gcdRecursive($a, $b);
+		return bcmul($gcd, self::sgn($gcd)); // abs
 	}
 
 
 	/**
-	 * @param  int $a
-	 * @param  int $b
-	 * @return int
+	 * @param  string $a
+	 * @param  string $b
+	 * @return string
 	 */
 	private static function gcdRecursive($a, $b)
 	{
-		return ($a % $b) ? self::gcdRecursive($b, $a % $b) : $b;
+		$mod = bcmod($a, $b);
+
+		if (bccomp($mod, '0') === 0) {
+			return $b;
+		}
+
+		return self::gcdRecursive($b, $mod);
 	}
 
 
 	/**
-	 * @param  numeric $n
+	 * @param  string $n
 	 * @return int -1, 0, 1
 	 */
 	public static function sgn($n)
 	{
-		return $n < 0 ? -1 : ($n > 0 ? 1 : 0);
+		return bccomp($n, '0');
 	}
 
 
 	/**
-	 * @param  numeric $n
+	 * @param  mixed $n
 	 * @return bool
 	 */
 	public static function isInt($n)
 	{
-		return is_numeric($n) && round($n) === (float) $n;
+		if (!is_numeric($n)) {
+			return false;
+		}
+
+		$dotParts = explode('.', (string) $n);
+
+		// either no decimal part or only filled with zeros
+		return !isset($dotParts[1]) || str_replace('0', '', $dotParts[1]) === '';
 	}
 
 }
