@@ -15,7 +15,16 @@ namespace Simplex;
 final class Solver
 {
 
-	/** @var array<int, Task|Table> */
+	/** @var Task */
+	private $task;
+
+	/** @var Task */
+	private $fixedRightSide;
+
+	/** @var Task */
+	private $fixedNonEquations;
+
+	/** @var Table[] */
 	private $steps = array();
 
 	/** @var int */
@@ -26,13 +35,32 @@ final class Solver
 	public function __construct(Task $task, $maxSteps = 16)
 	{
 		$this->maxSteps = (int) $maxSteps;
-		$this->steps[] = $task;
-
-		$this->solve();
+		$this->solve($task);
 	}
 
 
-	/** @return array<int, Task|Table> */
+	/** @return Task */
+	public function getTask()
+	{
+		return $this->task;
+	}
+
+
+	/** @return Task */
+	public function getFixedRightSide()
+	{
+		return $this->fixedRightSide;
+	}
+
+
+	/** @return Task */
+	public function getFixedNonEquations()
+	{
+		return $this->fixedNonEquations;
+	}
+
+
+	/** @return Table[] */
 	public function getSteps()
 	{
 		return $this->steps;
@@ -44,10 +72,6 @@ final class Solver
 	{
 		// find first table with a solution in steps
 		foreach ($this->steps as $step) {
-			if (!$step instanceof Table) {
-				continue ;
-			}
-
 			if ($step->isSolved()) {
 				return $step->getSolution();
 			}
@@ -64,10 +88,6 @@ final class Solver
 		$alternatives = array();
 
 		foreach ($this->steps as $step) {
-			if (!$step instanceof Table) {
-				continue ;
-			}
-
 			if ($step->isSolved()) {
 				if (!$first) {
 					$first = true;
@@ -87,19 +107,15 @@ final class Solver
 
 
 	/** @return void */
-	private function solve()
+	private function solve(Task $task)
 	{
-		$init = reset($this->steps);
+		$this->task = $task;
 
-		if (!$init instanceof Task) {
-			return ;
-		}
-
-		$t = clone $init;
-		$this->steps[] = $t->fixRightSides();
+		$t = clone $task;
+		$this->fixedRightSide = $t->fixRightSides();
 
 		$t = clone $t;
-		$this->steps[] = $t->fixNonEquations();
+		$this->fixedNonEquations = $t->fixNonEquations();
 
 		$this->steps[] = $tbl = $t->toTable();
 
@@ -107,7 +123,7 @@ final class Solver
 			$tbl = clone $tbl;
 			$this->steps[] = $tbl->nextStep();
 
-			if (count($this->steps) > $this->maxSteps) {
+			if (count($this->steps) >= $this->maxSteps) {
 				break ;
 			}
 		}

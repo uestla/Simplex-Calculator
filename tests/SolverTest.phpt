@@ -47,9 +47,9 @@ final class SolverTest extends TestCase
 		), Restriction::TYPE_GOE, -4));
 
 		$solver = new Solver($task);
-		$steps = $solver->getSteps();
 
-		Assert::count(3 + 4, $steps);
+		$steps = $solver->getSteps();
+		Assert::count(4, $steps);
 
 		Assert::equal(array(
 			'x1' => new Fraction(4),
@@ -93,9 +93,9 @@ final class SolverTest extends TestCase
 
 
 		$solver = new Solver($task);
-		$steps = $solver->getSteps();
 
-		Assert::count(3 + 3, $steps);
+		$steps = $solver->getSteps();
+		Assert::count(3, $steps);
 
 		Assert::equal(array(
 			'x1' => new Fraction(0),
@@ -158,9 +158,9 @@ final class SolverTest extends TestCase
 		), Restriction::TYPE_LOE, 0));
 
 		$solver = new Solver($task);
-		$steps = $solver->getSteps();
 
-		Assert::count(3 + 4, $steps);
+		$steps = $solver->getSteps();
+		Assert::count(4, $steps);
 
 		Assert::equal(array(
 			'x1' => new Fraction(40),
@@ -211,9 +211,7 @@ final class SolverTest extends TestCase
 		), Restriction::TYPE_GOE, 14));
 
 		$solver = new Solver($task);
-		$steps = $solver->getSteps();
-
-		Assert::count(3 + 4, $steps);
+		Assert::count(4, $solver->getSteps());
 		Assert::false($solver->getSolution());
 	}
 
@@ -746,15 +744,13 @@ final class SolverTest extends TestCase
 
 		// max steps 16
 		$solver = new Solver($task);
-		Assert::count(17, $solver->getSteps());
+		Assert::count(16, $solver->getSteps());
 		Assert::null($solver->getSolution());
 		Assert::null($solver->getAlternativeSolutions());
 
 		// max steps 32
 		$solver = new Solver($task, 32);
-		$steps = $solver->getSteps();
-
-		Assert::count(26, $steps);
+		Assert::count(23, $solver->getSteps());
 
 		Assert::equal(array(
 			'x1' => new Fraction('1','2'),
