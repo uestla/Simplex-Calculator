@@ -1,0 +1,25 @@
+name: "Nette Tester"
+
+on: [push, pull_request]
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                # NOTE: intentionally no 5.3, 5.4 and 5.5 versions due to problematic configuration
+                # nette/tester has no -C option for those PHP versions & bcmath seems not to be working (undefined function bc*())
+                php: [5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1, 8.2]
+
+            fail-fast: false
+
+        name: PHP ${{matrix.php}}
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
+
+            - run: make tester

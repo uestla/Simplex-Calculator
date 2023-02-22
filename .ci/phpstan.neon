@@ -1,0 +1,18 @@
+parameters:
+	level: max
+	paths:
+		- ../Simplex/
+		- ../tests/
+		- ../example.php
+	fileExtensions:
+		- php
+		- phpt
+	ignoreErrors:
+		-
+			message: "~^Parameter #1 \\$a of static method Simplex\\\\Helpers::gcd\\(\\) expects float\\|int\\|numeric-string, 'asDF' given\\.$~D"
+			path: ../tests/HelpersTest.phpt
+
+		-
+			message: "~^Parameter #1 \\$n of class Simplex\\\\Fraction constructor expects float\\|int\\|numeric-string, bool\\|float\\|int\\|string given\\.$~D"
+			path: ../tests/FractionTest.phpt
+			count: 2

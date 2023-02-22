@@ -11,12 +11,20 @@ vendor: composer.json $(wildcard composer.lock)
 	@composer install
 
 .PHONY: ci
-ci: phplint tester ## Runs complete CI suite
+ci: phplint phpstan tester ## Runs complete CI suite
 
 .PHONY: phplint
-phplint:
+phplint: install
+	@echo '> PHP linter ...'
 	@php vendor/bin/parallel-lint Simplex/ tests/ example.php --colors
+	@echo ''
+
+.PHONY: phpstan
+phpstan: install
+	@echo '> PHPStan ...'
+	@php .ci/phpstan analyse --configuration=.ci/phpstan.neon
 
 .PHONY: tester
-tester:
+tester: install
+	@echo '> tester ...'
 	@php vendor/bin/tester tests/ -C --colors
