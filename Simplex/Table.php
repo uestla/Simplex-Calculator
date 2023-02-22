@@ -317,7 +317,7 @@ final class Table
 					$this->solution[$var] = isset($newrows[$var][1]) ? $newrows[$var][1] : new Fraction('0');
 				}
 
-				ksort($this->solution);
+				uksort($this->solution, 'strnatcmp');
 			}
 		}
 

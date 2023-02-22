@@ -113,7 +113,6 @@ final class Task
 			}
 		}
 
-		ksort($this->basismap);
 		$this->function = new Func($newfunc);
 
 		$this->restrictions = array();

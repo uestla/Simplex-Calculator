@@ -27,8 +27,6 @@ abstract class VariableSet
 		foreach ($set as $var => $coeff) {
 			$this->set[$var] = Fraction::create($coeff);
 		}
-
-		ksort($this->set);
 	}
 
 
