@@ -1,8 +1,12 @@
 <?php
 
+use Simplex\Printer;
+
+
 require_once __DIR__ . '/Simplex/simplex.php';
 
 
+// define objective functions
 $z = new Simplex\Func(array(
 	'x1' => 1,
 	'x2' => 2,
@@ -10,6 +14,7 @@ $z = new Simplex\Func(array(
 
 $task = new Simplex\Task($z);
 
+// add constraints
 $task->addRestriction(new Simplex\Restriction(array(
 	'x1' => 3,
 	'x2' => 2,
@@ -22,7 +27,12 @@ $task->addRestriction(new Simplex\Restriction(array(
 
 ), Simplex\Restriction::TYPE_GOE, -32));
 
-
+// get solutions
 $solver = new Simplex\Solver($task);
 
-var_dump($solver->getSolution(), $solver->getAlternativeSolution()); die();
+$solution = $solver->getSolution();
+$alternativeSolutions = $solver->getAlternativeSolution();
+
+// print solver
+$printer = new Printer;
+$printer->printSolver($solver);

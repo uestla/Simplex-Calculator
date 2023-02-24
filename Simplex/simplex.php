@@ -11,3 +11,4 @@ require_once __DIR__ . '/Task.php';
 require_once __DIR__ . '/TableRow.php';
 require_once __DIR__ . '/Table.php';
 require_once __DIR__ . '/Solver.php';
+require_once __DIR__ . '/Printer.php';
