@@ -5,7 +5,6 @@ namespace Simplex\Tests;
 use Simplex\Func;
 use Simplex\Task;
 use Tester\Assert;
-use Simplex\Table;
 use Simplex\Solver;
 use Tester\TestCase;
 use Simplex\Fraction;
@@ -47,9 +46,10 @@ final class SolverTest extends TestCase
 		), Restriction::TYPE_GOE, -4));
 
 		$solver = new Solver($task);
+		Assert::count(4, $solver->getSteps());
 
-		$steps = $solver->getSteps();
-		Assert::count(4, $steps);
+		$solution = $solver->getSolution();
+		assert(is_array($solution));
 
 		Assert::equal(array(
 			'x1' => new Fraction(4),
@@ -57,15 +57,13 @@ final class SolverTest extends TestCase
 			'x3' => new Fraction(6),
 			'x4' => new Fraction(0),
 
-		), $solver->getSolution());
+		), $solution);
+
+		Assert::same('12', (string) $solver->getSolutionValue($solution));
 
 		$altSolutions = $solver->getAlternativeSolutions();
 		assert(is_array($altSolutions));
 		Assert::count(0, $altSolutions);
-
-		$lastStep = end($steps);
-		assert($lastStep instanceof Table);
-		Assert::true($lastStep->getZ()->getB()->isEqualTo(12));
 	}
 
 
@@ -93,9 +91,10 @@ final class SolverTest extends TestCase
 
 
 		$solver = new Solver($task);
+		Assert::count(3, $solver->getSteps());
 
-		$steps = $solver->getSteps();
-		Assert::count(3, $steps);
+		$solution = $solver->getSolution();
+		assert(is_array($solution));
 
 		Assert::equal(array(
 			'x1' => new Fraction(0),
@@ -103,12 +102,12 @@ final class SolverTest extends TestCase
 			'x3' => new Fraction(8),
 			'x4' => new Fraction(0),
 
-		), $solver->getSolution());
+		), $solution);
 
-		$lastStep = end($steps);
-		$preLastStep = prev($steps);
-		assert($preLastStep instanceof Table);
-		Assert::true($preLastStep->getZ()->getB()->isEqualTo(16));
+		Assert::same('16', (string) $solver->getSolutionValue($solution));
+
+		$alternativeSolutions = $solver->getAlternativeSolutions();
+		assert(is_array($alternativeSolutions) && count($alternativeSolutions) === 1);
 
 		Assert::equal(array(
 			array(
@@ -118,10 +117,9 @@ final class SolverTest extends TestCase
 				'x4' => new Fraction(0),
 			),
 
-		), $solver->getAlternativeSolutions());
+		), $alternativeSolutions);
 
-		assert($lastStep instanceof Table);
-		Assert::true($lastStep->getZ()->getB()->isEqualTo(16));
+		Assert::same('16', (string) $solver->getSolutionValue($alternativeSolutions[0]));
 	}
 
 
@@ -158,9 +156,10 @@ final class SolverTest extends TestCase
 		), Restriction::TYPE_LOE, 0));
 
 		$solver = new Solver($task);
+		Assert::count(4, $solver->getSteps());
 
-		$steps = $solver->getSteps();
-		Assert::count(4, $steps);
+		$solution = $solver->getSolution();
+		assert(is_array($solution));
 
 		Assert::equal(array(
 			'x1' => new Fraction(40),
@@ -170,15 +169,13 @@ final class SolverTest extends TestCase
 			'x5' => new Fraction(0),
 			'x6' => new Fraction(0),
 
-		), $solver->getSolution());
+		), $solution);
+
+		Assert::same('6000', (string) $solver->getSolutionValue($solution));
 
 		$altSolutions = $solver->getAlternativeSolutions();
 		assert(is_array($altSolutions));
 		Assert::count(0, $altSolutions);
-
-		$lastStep = end($steps);
-		assert($lastStep instanceof Table);
-		Assert::true($lastStep->getZ()->getB()->isEqualTo(6000));
 	}
 
 
@@ -350,6 +347,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 50));
 
 		$task->addRestriction(new Restriction(array(
@@ -381,6 +379,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 100));
 
 		$task->addRestriction(new Restriction(array(
@@ -412,6 +411,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 300));
 
 		$task->addRestriction(new Restriction(array(
@@ -443,6 +443,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 30));
 
 		$task->addRestriction(new Restriction(array(
@@ -474,6 +475,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 300));
 
 		$task->addRestriction(new Restriction(array(
@@ -505,6 +507,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 50));
 
 		$task->addRestriction(new Restriction(array(
@@ -536,6 +539,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 20));
 
 		$task->addRestriction(new Restriction(array(
@@ -567,6 +571,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE,40));
 
 		$task->addRestriction(new Restriction(array(
@@ -598,6 +603,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 200));
 
 		$task->addRestriction(new Restriction(array(
@@ -629,6 +635,7 @@ final class SolverTest extends TestCase
 			'x10' => 100,
 			'x11' => 0,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 300));
 
 		$task->addRestriction(new Restriction(array(
@@ -660,6 +667,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 100,
 			'x12' => 0,
+
 		), Restriction::TYPE_LOE, 300));
 
 		$task->addRestriction(new Restriction(array(
@@ -691,6 +699,7 @@ final class SolverTest extends TestCase
 			'x10' => 0,
 			'x11' => 0,
 			'x12' => 100,
+
 		), Restriction::TYPE_LOE, 30));
 
 		// Constraints on macronutrients:
@@ -752,6 +761,9 @@ final class SolverTest extends TestCase
 		$solver = new Solver($task, 32);
 		Assert::count(23, $solver->getSteps());
 
+		$solution = $solver->getSolution();
+		assert(is_array($solution));
+
 		Assert::equal(array(
 			'x1' => new Fraction('1','2'),
 			'x2' => new Fraction('15751283','20394800'),
@@ -798,7 +810,9 @@ final class SolverTest extends TestCase
 			'x43' => new Fraction('0','1'),
 			'x44' => new Fraction('5707901407','1223688000'),
 
-		), $solver->getSolution());
+		), $solution);
+
+		Assert::same('406407/250', (string) $solver->getSolutionValue($solution));
 
 		$altSolutions = $solver->getAlternativeSolutions();
 		assert(is_array($altSolutions));

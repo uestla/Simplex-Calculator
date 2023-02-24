@@ -81,6 +81,25 @@ final class Solver
 	}
 
 
+	/**
+	 * @param  array<string, Fraction> $solution
+	 * @return Fraction
+	 */
+	public function getSolutionValue(array $solution)
+	{
+		$value = new Fraction('0');
+		foreach ($this->task->getFunction()->getSet() as $var => $coeff) {
+			if (!isset($solution[$var])) {
+				continue ;
+			}
+
+			$value = $value->add($coeff->multiply($solution[$var]));
+		}
+
+		return $value;
+	}
+
+
 	/** @return array<int, array<string, Fraction>>|false|null */
 	public function getAlternativeSolutions()
 	{
