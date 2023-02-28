@@ -40,7 +40,7 @@ final class Table
 			throw new \InvalidArgumentException("Variables of both objective functions don't match.");
 		}
 
-		$this->z = new TableRow('z', $z->getSet(), 0);
+		$this->z = new TableRow('z', $z->getSet(), '0');
 		$this->z2 = $z2 ? new TableRow('z\'', $z2->getSet(), $z2->getValue()) : null;
 	}
 

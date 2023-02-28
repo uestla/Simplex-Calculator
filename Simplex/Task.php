@@ -105,10 +105,10 @@ final class Task
 			}
 
 			foreach ($added as $newvar => $coeff) {
-				$newfunc[$newvar] = 0;
+				$newfunc[$newvar] = '0';
 
 				foreach ($this->restrictions as $i => $r) {
-					$newrestr[$i][0][$newvar] = $idx === $i ? $coeff : 0;
+					$newrestr[$i][0][$newvar] = $idx === $i ? $coeff : '0';
 				}
 			}
 		}
@@ -132,7 +132,7 @@ final class Task
 			$zcoeffs[$var] = $coeff->multiply(-1);
 		}
 
-		$z = new ValueFunc($zcoeffs, 0);
+		$z = new ValueFunc($zcoeffs, '0');
 
 		$z2b = new Fraction('0');
 		$z2coeffs = array();
