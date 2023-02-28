@@ -45,7 +45,7 @@ final class Fraction
 	public static function create($a)
 	{
 		if ($a instanceof self) {
-			return $a;
+			return clone $a;
 		}
 
 		return new self($a);
