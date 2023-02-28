@@ -30,6 +30,12 @@ final class Solver
 	/** @var int */
 	private $maxSteps;
 
+	/** @var array<string, Fraction>|false|null */
+	private $solution;
+
+	/** @var array<int, array<string, Fraction>>|null */
+	private $alternativeSolutions;
+
 
 	/** @param  int $maxSteps */
 	public function __construct(Task $task, $maxSteps = 16)
@@ -70,14 +76,7 @@ final class Solver
 	/** @return array<string, Fraction>|false|null */
 	public function getSolution()
 	{
-		// find first table with a solution in steps
-		foreach ($this->steps as $step) {
-			if ($step->isSolved()) {
-				return $step->getSolution();
-			}
-		}
-
-		return null;
+		return $this->solution;
 	}
 
 
@@ -103,25 +102,7 @@ final class Solver
 	/** @return array<int, array<string, Fraction>>|false|null */
 	public function getAlternativeSolutions()
 	{
-		$first = false;
-		$alternatives = array();
-
-		foreach ($this->steps as $step) {
-			if ($step->isSolved()) {
-				if (!$first) {
-					$first = true;
-					continue ;
-				}
-
-				$altSolution = $step->getSolution();
-
-				if (is_array($altSolution)) {
-					$alternatives[] = $altSolution;
-				}
-			}
-		}
-
-		return $first ? $alternatives : null;
+		return $this->alternativeSolutions;
 	}
 
 
@@ -147,10 +128,21 @@ final class Solver
 			}
 		}
 
+		$this->solution = $tbl->getSolution();
+
 		$altSolutionTbl = $tbl->getAlternativeSolution();
 
 		if ($altSolutionTbl instanceof Table) {
 			$this->steps[] = $altSolutionTbl;
+
+			$altSolution = $altSolutionTbl->getSolution();
+
+			if (is_array($altSolution)) {
+				$this->alternativeSolutions = array($altSolution);
+			}
+
+		} elseif ($tbl->hasSolution()) {
+			$this->alternativeSolutions = array();
 		}
 	}
 
