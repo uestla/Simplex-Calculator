@@ -16,7 +16,7 @@ ci: phplint phpstan tester ## Runs complete CI suite
 .PHONY: phplint
 phplint: install
 	@echo '> PHP linter ...'
-	@php vendor/bin/parallel-lint Simplex/ tests/ example.php --colors
+	@php vendor/bin/parallel-lint Simplex/ tests/ --colors
 	@echo ''
 
 .PHONY: phpstan
