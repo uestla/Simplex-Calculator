@@ -33,7 +33,7 @@ final class FractionTest extends TestCase
 		Assert::exception(function () {
 			new Fraction(3, 0);
 
-		}, 'Exception', 'Division by zero.');
+		}, 'Simplex\\DivisionByZeroException', 'Division by zero.');
 	}
 
 

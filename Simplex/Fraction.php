@@ -70,7 +70,7 @@ final class Fraction
 	public function canonicalize()
 	{
 		if ($this->d === '0') {
-			throw new \Exception('Division by zero.');
+			throw new DivisionByZeroException('Division by zero.');
 		}
 
 		$gcd = Helpers::gcd($this->n, $this->d);

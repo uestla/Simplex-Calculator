@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__ . '/exceptions.php';
 require_once __DIR__ . '/Math.php';
 require_once __DIR__ . '/Helpers.php';
 require_once __DIR__ . '/Fraction.php';
