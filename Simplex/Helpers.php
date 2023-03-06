@@ -29,8 +29,8 @@ final class Helpers
 		$a = (string) $a;
 		$b = (string) $b;
 
-		$aZero = bccomp($a, '0') === 0;
-		$bZero = bccomp($b, '0') === 0;
+		$aZero = Math::comp($a, '0') === 0;
+		$bZero = Math::comp($b, '0') === 0;
 
 		if ($aZero && $bZero) {
 			throw new \InvalidArgumentException('At least one number must not be a zero.');
@@ -45,7 +45,7 @@ final class Helpers
 		}
 
 		$gcd = self::gcdRecursive($a, $b);
-		return bcmul($gcd, (string) self::sgn($gcd)); // abs
+		return Math::mul($gcd, (string) self::sgn($gcd)); // abs
 	}
 
 
@@ -56,9 +56,9 @@ final class Helpers
 	 */
 	private static function gcdRecursive($a, $b)
 	{
-		$mod = bcmod($a, $b);
+		$mod = Math::mod($a, $b);
 
-		if (bccomp($mod, '0') === 0) {
+		if (Math::comp($mod, '0') === 0) {
 			return $b;
 		}
 
@@ -72,7 +72,7 @@ final class Helpers
 	 */
 	public static function sgn($n)
 	{
-		return bccomp((string) $n, '0');
+		return Math::comp((string) $n, '0');
 	}
 
 

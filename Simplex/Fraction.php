@@ -31,8 +31,8 @@ final class Fraction
 		list($nn, $nd) = self::factoryParts($n);
 		list($dn, $dd) = self::factoryParts($d);
 
-		$this->n = bcmul($nn, $dd);
-		$this->d = bcmul($nd, $dn);
+		$this->n = Math::mul($nn, $dd);
+		$this->d = Math::mul($nd, $dn);
 
 		$this->canonicalize();
 	}
@@ -74,12 +74,12 @@ final class Fraction
 		}
 
 		$gcd = Helpers::gcd($this->n, $this->d);
-		$this->n = bcdiv($this->n, $gcd);
-		$this->d = bcdiv($this->d, $gcd);
+		$this->n = Math::div($this->n, $gcd);
+		$this->d = Math::div($this->d, $gcd);
 
-		if (bccomp($this->d, '0') === -1) {
-			$this->n = bcmul($this->n, '-1');
-			$this->d = bcmul($this->d, '-1');
+		if (Math::comp($this->d, '0') === -1) {
+			$this->n = Math::mul($this->n, '-1');
+			$this->d = Math::mul($this->d, '-1');
 		}
 
 		return $this;
@@ -97,11 +97,11 @@ final class Fraction
 		$a = self::create($a);
 
 		return new self(
-			bcadd(
-				bcmul($this->n, $a->getDenominator()),
-				bcmul($this->d, $a->getNumerator())
+			Math::add(
+				Math::mul($this->n, $a->getDenominator()),
+				Math::mul($this->d, $a->getNumerator())
 			),
-			bcmul($this->d, $a->getDenominator())
+			Math::mul($this->d, $a->getDenominator())
 		);
 	}
 
@@ -129,8 +129,8 @@ final class Fraction
 		$a = self::create($a);
 
 		return new self(
-			bcmul($this->n, $a->getNumerator()),
-			bcmul($this->d, $a->getDenominator())
+			Math::mul($this->n, $a->getNumerator()),
+			Math::mul($this->d, $a->getDenominator())
 		);
 	}
 
@@ -159,7 +159,7 @@ final class Fraction
 	public function absVal()
 	{
 		return new self(
-			bcmul((string) $this->sgn(), $this->n),
+			Math::mul((string) $this->sgn(), $this->n),
 			$this->d
 		);
 	}
@@ -175,9 +175,9 @@ final class Fraction
 	{
 		$a = self::create($a);
 
-		return Helpers::sgn(bcsub(
-			bcmul($this->n, $a->getDenominator()),
-			bcmul($a->getNumerator(), $this->d)
+		return Helpers::sgn(Math::sub(
+			Math::mul($this->n, $a->getDenominator()),
+			Math::mul($a->getNumerator(), $this->d)
 		));
 	}
 
@@ -255,22 +255,30 @@ final class Fraction
 
 		if (isset($expParts[1])) {
 			if ($expParts[1][0] === '-') { // negative exponent
-				$d = bcpow('10', substr($expParts[1], 1), 0);
+				/** @var numeric-string $exp */
+				$exp = substr($expParts[1], 1);
+
+				$d = Math::pow('10', $exp);
 
 			} else {
-				$m = bcpow('10', $expParts[1], 0);
+				/** @var numeric-string $exp */
+				$exp = $expParts[1];
+
+				$m = Math::pow('10', $exp);
 			}
 		}
 
 		if (isset($dotParts[1])) {
+			/** @var numeric-string $n */
 			$n = implode('', $dotParts);
-			$d = bcpow('10', (string) strlen($dotParts[1]), 0);
+			$d = Math::pow('10', (string) strlen($dotParts[1]));
 
 		} else {
+			/** @var numeric-string $n */
 			$n = $dotParts[0];
 		}
 
-		$n = bcmul($n, $m, 0);
+		$n = Math::mul($n, $m);
 
 		return array($n, $d);
 	}
