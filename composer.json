@@ -3,7 +3,7 @@
 	"type": "library",
 	"description": "Simple tool for linear programming problems solving",
 	"keywords": ["simplex", "algorithm", "linear", "programming"],
-	"homepage": "http://simplex.tode.cz",
+	"homepage": "http://simplex.wz.cz",
 	"license": "MIT",
 	"support": {
 		"issues": "https://github.com/uestla/Simplex-Calculator/issues"
