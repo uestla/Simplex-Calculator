@@ -254,7 +254,12 @@ final class Fraction
 		}
 
 		if (isset($expParts[1])) {
-			$m = bcpow('10', $expParts[1], 0);
+			if ($expParts[1][0] === '-') { // negative exponent
+				$d = bcpow('10', substr($expParts[1], 1), 0);
+
+			} else {
+				$m = bcpow('10', $expParts[1], 0);
+			}
 		}
 
 		if (isset($dotParts[1])) {

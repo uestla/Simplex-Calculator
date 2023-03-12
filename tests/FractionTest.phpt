@@ -19,6 +19,11 @@ final class FractionTest extends TestCase
 		Assert::same('1000', (string) new Fraction('1E3'));
 		Assert::same('1000', (string) new Fraction('1E+3'));
 		Assert::same('1000', (string) new Fraction('1E+4', '10'));
+
+		Assert::same('1/1000', (string) new Fraction('1E-3'));
+		Assert::same('1/500', (string) new Fraction('2E-3'));
+		Assert::same('3/1000', (string) new Fraction('3E-3'));
+		Assert::same('1/50000', (string) new Fraction('2E-4', '10'));
 	}
 
 
