@@ -44,25 +44,21 @@ final class Helpers
 			return $a;
 		}
 
-		$gcd = self::gcdRecursive($a, $b);
-		return Math::mul($gcd, (string) self::sgn($gcd)); // abs
-	}
+		$gcd = '0';
 
+		while (true) {
+			$mod = Math::mod($a, $b);
 
-	/**
-	 * @param  numeric-string $a
-	 * @param  numeric-string $b
-	 * @return numeric-string
-	 */
-	private static function gcdRecursive($a, $b)
-	{
-		$mod = Math::mod($a, $b);
+			if (Math::comp($mod, '0') === 0) {
+				$gcd = $b;
+				break;
+			}
 
-		if (Math::comp($mod, '0') === 0) {
-			return $b;
+			$a = $b;
+			$b = $mod;
 		}
 
-		return self::gcdRecursive($b, $mod);
+		return Math::mul($gcd, (string) self::sgn($gcd)); // abs
 	}
 
 
