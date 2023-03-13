@@ -1,0 +1,17 @@
+{
+	"name": "uestla/simplex-calculator",
+	"type": "library",
+	"description": "Simple tool for linear programming problems solving",
+	"keywords": ["simplex", "algorithm", "linear", "programming"],
+	"homepage": "http://simplex.wz.cz",
+	"license": "MIT",
+	"support": {
+		"issues": "https://github.com/uestla/Simplex-Calculator/issues"
+	},
+	"require": {
+		"php": ">=8.2"
+	},
+	"autoload": {
+		"files": ["src/Simplex/simplex.php"]
+	}
+}
