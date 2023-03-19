@@ -10,6 +10,7 @@
 	},
 	"require": {
 		"ext-bcmath": "*",
+		"ext-ctype": "*",
 		"php": ">=8.2"
 	},
 	"require-dev": {

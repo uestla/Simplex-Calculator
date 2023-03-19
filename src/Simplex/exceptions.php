@@ -23,5 +23,32 @@ final class ZeroGcdArgumentsException extends SimplexException
 }
 
 
+final class DivisionByZeroException extends SimplexException
+{
+	public function __construct()
+	{
+		parent::__construct('Division by zero.');
+	}
+}
+
+
+final class NonNumericArgumentException extends SimplexException
+{
+	public function __construct(string $s)
+	{
+		parent::__construct(sprintf('Non-numeric argument "%s".', $s));
+	}
+}
+
+
+final class ScientificFloatException extends SimplexException
+{
+	public function __construct()
+	{
+		parent::__construct('Floats with scientific notation are not supported.');
+	}
+}
+
+
 abstract class SimplexException extends \Exception
 {}
