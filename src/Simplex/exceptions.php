@@ -14,5 +14,14 @@ declare(strict_types = 1);
 namespace Simplex;
 
 
-require_once __DIR__ . '/exceptions.php';
-require_once __DIR__ . '/Math/math.php';
+final class ZeroGcdArgumentsException extends SimplexException
+{
+	public function __construct()
+	{
+		parent::__construct('At least one number must not be a zero.');
+	}
+}
+
+
+abstract class SimplexException extends \Exception
+{}

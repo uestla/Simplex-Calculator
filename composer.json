@@ -9,6 +9,7 @@
 		"issues": "https://github.com/uestla/Simplex-Calculator/issues"
 	},
 	"require": {
+		"ext-bcmath": "*",
 		"php": ">=8.2"
 	},
 	"require-dev": {
