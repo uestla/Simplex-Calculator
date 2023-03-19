@@ -41,7 +41,7 @@ final class Helpers
 		}
 
 		if ($bZero) {
-			return $b;
+			return $a;
 		}
 
 		$gcd = self::gcdRecursive($a, $b);

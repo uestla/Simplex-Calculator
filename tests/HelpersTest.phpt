@@ -27,6 +27,7 @@ final class HelpersTest extends TestCase
 
 		Assert::same('1', Helpers::gcd(1, 24));
 		Assert::same('21', Helpers::gcd(0, 21));
+		Assert::same('21', Helpers::gcd(21, 0));
 		Assert::same('256', Helpers::gcd(1400000000000000256, 100000000000000000));
 
 		Assert::exception(function () {
