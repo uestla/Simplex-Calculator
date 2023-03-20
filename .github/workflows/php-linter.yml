@@ -1,0 +1,24 @@
+name: "PHP Linter"
+
+on: [push, pull_request]
+
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [8.2, 8.3]
+
+            fail-fast: false
+
+        name: PHP Linter - ${{matrix.php}}
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
+
+            - run: make phplint
