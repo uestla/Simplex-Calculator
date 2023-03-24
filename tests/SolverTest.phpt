@@ -54,8 +54,6 @@ final class SolverTest extends TestCase
 		Assert::equal(array(
 			'x1' => new Fraction(4),
 			'x2' => new Fraction(4),
-			'x3' => new Fraction(6),
-			'x4' => new Fraction(0),
 
 		), $solution);
 
@@ -97,8 +95,6 @@ final class SolverTest extends TestCase
 		Assert::equal(array(
 			'x1' => new Fraction(0),
 			'x2' => new Fraction(8),
-			'x3' => new Fraction(8),
-			'x4' => new Fraction(0),
 
 		), $solution);
 
@@ -110,8 +106,6 @@ final class SolverTest extends TestCase
 		Assert::equal(array(
 			'x1' => new Fraction(4),
 			'x2' => new Fraction(6),
-			'x3' => new Fraction(0),
-			'x4' => new Fraction(0),
 
 		), $alternativeSolution);
 
@@ -161,9 +155,6 @@ final class SolverTest extends TestCase
 			'x1' => new Fraction(40),
 			'x2' => new Fraction(0),
 			'x3' => new Fraction(0),
-			'x4' => new Fraction(0),
-			'x5' => new Fraction(0),
-			'x6' => new Fraction(0),
 
 		), $solution);
 
@@ -771,38 +762,6 @@ final class SolverTest extends TestCase
 			'x10' => new Fraction('2','1'),
 			'x11' => new Fraction('4','5'),
 			'x12' => new Fraction('3','10'),
-			'x13' => new Fraction('30593','250'),
-			'x14' => new Fraction('21743','250'),
-			'x15' => new Fraction('0','1'),
-			'x16' => new Fraction('182','5'),
-			'x17' => new Fraction('0','1'),
-			'x18' => new Fraction('30','1'),
-			'x19' => new Fraction('0','1'),
-			'x20' => new Fraction('9632843','203948'),
-			'x21' => new Fraction('4643517','203948'),
-			'x22' => new Fraction('0','1'),
-			'x23' => new Fraction('150','1'),
-			'x24' => new Fraction('3928852535','611232156'),
-			'x25' => new Fraction('11351951365','611232156'),
-			'x26' => new Fraction('150','1'),
-			'x27' => new Fraction('0','1'),
-			'x28' => new Fraction('20','1'),
-			'x29' => new Fraction('0','1'),
-			'x30' => new Fraction('15','1'),
-			'x31' => new Fraction('0','1'),
-			'x32' => new Fraction('0','1'),
-			'x33' => new Fraction('0','1'),
-			'x34' => new Fraction('30715','1608'),
-			'x35' => new Fraction('210485','1608'),
-			'x36' => new Fraction('0','1'),
-			'x37' => new Fraction('100','1'),
-			'x38' => new Fraction('0','1'),
-			'x39' => new Fraction('220','1'),
-			'x40' => new Fraction('25','1'),
-			'x41' => new Fraction('0','1'),
-			'x42' => new Fraction('31728385577','1223688000'),
-			'x43' => new Fraction('0','1'),
-			'x44' => new Fraction('5707901407','1223688000'),
 
 		), $solution);
 

@@ -128,19 +128,37 @@ final class Solver
 			}
 		}
 
-		$this->solution = $tbl->getSolution();
+		$this->solution = $this->extractSolution($tbl->getSolution());
 
 		$altSolutionTbl = $tbl->getAlternativeSolution();
 
 		if ($altSolutionTbl instanceof Table) {
 			$this->steps[] = $altSolutionTbl;
 
-			$altSolution = $altSolutionTbl->getSolution();
+			/** @var array<string, Fraction> $altSolution */
+			$altSolution = $this->extractSolution($altSolutionTbl->getSolution());
 
-			if (is_array($altSolution)) {
-				$this->alternativeSolution = $altSolution;
-			}
+			$this->alternativeSolution = $altSolution;
 		}
+	}
+
+
+	/**
+	 * @param  array<string, Fraction>|false|null $solution
+	 * @return array<string, Fraction>|false|null
+	 */
+	private function extractSolution($solution)
+	{
+		if (!is_array($solution)) {
+			return $solution;
+		}
+
+		$result = array();
+		foreach ($this->task->getFunction()->getVariableList() as $var) {
+			$result[$var] = $solution[$var];
+		}
+
+		return $result;
 	}
 
 }
