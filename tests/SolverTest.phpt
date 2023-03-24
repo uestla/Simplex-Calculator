@@ -61,9 +61,7 @@ final class SolverTest extends TestCase
 
 		Assert::same('12', (string) $solver->getSolutionValue($solution));
 
-		$altSolutions = $solver->getAlternativeSolutions();
-		assert(is_array($altSolutions));
-		Assert::count(0, $altSolutions);
+		Assert::null($solver->getAlternativeSolution());
 	}
 
 
@@ -106,20 +104,18 @@ final class SolverTest extends TestCase
 
 		Assert::same('16', (string) $solver->getSolutionValue($solution));
 
-		$alternativeSolutions = $solver->getAlternativeSolutions();
-		assert(is_array($alternativeSolutions) && count($alternativeSolutions) === 1);
+		$alternativeSolution = $solver->getAlternativeSolution();
+		assert(is_array($alternativeSolution));
 
 		Assert::equal(array(
-			array(
-				'x1' => new Fraction(4),
-				'x2' => new Fraction(6),
-				'x3' => new Fraction(0),
-				'x4' => new Fraction(0),
-			),
+			'x1' => new Fraction(4),
+			'x2' => new Fraction(6),
+			'x3' => new Fraction(0),
+			'x4' => new Fraction(0),
 
-		), $alternativeSolutions);
+		), $alternativeSolution);
 
-		Assert::same('16', (string) $solver->getSolutionValue($alternativeSolutions[0]));
+		Assert::same('16', (string) $solver->getSolutionValue($alternativeSolution));
 	}
 
 
@@ -173,9 +169,7 @@ final class SolverTest extends TestCase
 
 		Assert::same('6000', (string) $solver->getSolutionValue($solution));
 
-		$altSolutions = $solver->getAlternativeSolutions();
-		assert(is_array($altSolutions));
-		Assert::count(0, $altSolutions);
+		Assert::null($solver->getAlternativeSolution());
 	}
 
 
@@ -755,7 +749,7 @@ final class SolverTest extends TestCase
 		$solver = new Solver($task);
 		Assert::count(16, $solver->getSteps());
 		Assert::null($solver->getSolution());
-		Assert::null($solver->getAlternativeSolutions());
+		Assert::null($solver->getAlternativeSolution());
 
 		// max steps 32
 		$solver = new Solver($task, 32);
@@ -814,9 +808,7 @@ final class SolverTest extends TestCase
 
 		Assert::same('406407/250', (string) $solver->getSolutionValue($solution));
 
-		$altSolutions = $solver->getAlternativeSolutions();
-		assert(is_array($altSolutions));
-		Assert::count(0, $altSolutions);
+		Assert::null($solver->getAlternativeSolution());
 	}
 
 }

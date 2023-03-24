@@ -33,8 +33,8 @@ final class Solver
 	/** @var array<string, Fraction>|false|null */
 	private $solution;
 
-	/** @var array<int, array<string, Fraction>>|null */
-	private $alternativeSolutions;
+	/** @var array<string, Fraction>|null */
+	private $alternativeSolution;
 
 
 	/** @param  int $maxSteps */
@@ -99,10 +99,10 @@ final class Solver
 	}
 
 
-	/** @return array<int, array<string, Fraction>>|false|null */
-	public function getAlternativeSolutions()
+	/** @return array<string, Fraction>|null */
+	public function getAlternativeSolution()
 	{
-		return $this->alternativeSolutions;
+		return $this->alternativeSolution;
 	}
 
 
@@ -138,11 +138,8 @@ final class Solver
 			$altSolution = $altSolutionTbl->getSolution();
 
 			if (is_array($altSolution)) {
-				$this->alternativeSolutions = array($altSolution);
+				$this->alternativeSolution = $altSolution;
 			}
-
-		} elseif ($tbl->hasSolution()) {
-			$this->alternativeSolutions = array();
 		}
 	}
 

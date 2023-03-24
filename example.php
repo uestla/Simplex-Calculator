@@ -25,4 +25,4 @@ $task->addRestriction(new Simplex\Restriction(array(
 
 $solver = new Simplex\Solver($task);
 
-var_dump($solver->getSolution(), $solver->getAlternativeSolutions()); die();
+var_dump($solver->getSolution(), $solver->getAlternativeSolution()); die();
