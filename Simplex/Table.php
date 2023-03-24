@@ -266,21 +266,23 @@ final class Table
 			return $this;
 		}
 
+		$keyval = $keyrow->get($keycol);
+
 		foreach ($this->rows as $row) {
 			$rowset = array();
 
 			if ($row->getVar() === $keyrow->getVar()) {
 				$var = $keycol;
-				$b = $row->getB()->divide($keyrow->get($keycol));
+				$b = $row->getB()->divide($keyval);
 
 				foreach ($row->getSet() as $v => $c) {
-					$rowset[$v] = $c->divide($keyrow->get($keycol));
+					$rowset[$v] = $c->divide($keyval);
 				}
 
 			} else {
 				$var = $row->getVar();
 				$set = $row->getSet();
-				$dvd = $set[$keycol]->multiply(-1)->divide($keyrow->get($keycol));
+				$dvd = $set[$keycol]->multiply(-1)->divide($keyval);
 				$b = $dvd->multiply($keyrow->getB())->add($row->getB());
 
 				foreach ($row->getSet() as $v => $c) {
