@@ -82,10 +82,10 @@ final class Helpers
 			return false;
 		}
 
-		$dotParts = explode('.', (string) $n);
+		$dotPos = strpos((string) $n, '.');
 
 		// either no decimal part or only filled with zeros
-		return !isset($dotParts[1]) || str_replace('0', '', $dotParts[1]) === '';
+		return $dotPos === false || str_replace('0', '', substr((string) $n, $dotPos)) === '';
 	}
 
 }
