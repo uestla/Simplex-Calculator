@@ -87,6 +87,13 @@ final class Table
 	}
 
 
+	/** @return string[] */
+	public function getBasis()
+	{
+		return $this->basis;
+	}
+
+
 	/** @return TableRow[] */
 	public function getRows()
 	{
