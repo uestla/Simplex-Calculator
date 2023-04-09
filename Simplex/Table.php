@@ -301,16 +301,11 @@ final class Table
 				$this->solution = array();
 
 				foreach ($this->z->getVariableList() as $var) {
-					if (strncmp($var, 'y', 1) === 0) continue;
-
-					foreach ($this->rows as $row) {
-						if ($row->getVar() === $var) {
-							$this->solution[$var] = $row->getB();
-							continue 2;
-						}
+					if (strncmp($var, 'y', 1) === 0) {
+						continue;
 					}
 
-					$this->solution[$var] = new Fraction('0');
+					$this->solution[$var] = isset($newrows[$var][1]) ? $newrows[$var][1] : new Fraction('0');
 				}
 
 				ksort($this->solution);
