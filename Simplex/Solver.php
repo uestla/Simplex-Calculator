@@ -74,7 +74,11 @@ final class Solver
 					continue ;
 				}
 
-				$alternatives[] = $step->getSolution();
+				$altSolution = $step->getSolution();
+
+				if (is_array($altSolution)) {
+					$alternatives[] = $altSolution;
+				}
 			}
 		}
 
@@ -85,8 +89,13 @@ final class Solver
 	/** @return void */
 	private function solve()
 	{
-		/** @var Task $t */
-		$t = clone reset($this->steps);
+		$init = reset($this->steps);
+
+		if (!$init instanceof Task) {
+			return ;
+		}
+
+		$t = clone $init;
 		$this->steps[] = $t->fixRightSides();
 
 		$t = clone $t;
@@ -103,8 +112,10 @@ final class Solver
 			}
 		}
 
-		if ($tbl->hasAlternativeSolution()) {
-			$this->steps[] = $tbl->getAlternativeSolution();
+		$altSolutionTbl = $tbl->getAlternativeSolution();
+
+		if ($altSolutionTbl instanceof Table) {
+			$this->steps[] = $altSolutionTbl;
 		}
 	}
 

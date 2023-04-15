@@ -5,6 +5,7 @@ namespace Simplex\Tests;
 use Simplex\Func;
 use Simplex\Task;
 use Tester\Assert;
+use Simplex\Table;
 use Simplex\Solver;
 use Tester\TestCase;
 use Simplex\Fraction;
@@ -58,8 +59,13 @@ final class SolverTest extends TestCase
 
 		), $solver->getSolution());
 
-		Assert::count(0, $solver->getAlternativeSolutions());
-		Assert::true(end($steps)->getZ()->getB()->isEqualTo(12));
+		$altSolutions = $solver->getAlternativeSolutions();
+		assert(is_array($altSolutions));
+		Assert::count(0, $altSolutions);
+
+		$lastStep = end($steps);
+		assert($lastStep instanceof Table);
+		Assert::true($lastStep->getZ()->getB()->isEqualTo(12));
 	}
 
 
@@ -99,8 +105,10 @@ final class SolverTest extends TestCase
 
 		), $solver->getSolution());
 
-		end($steps);
-		Assert::true(prev($steps)->getZ()->getB()->isEqualTo(16));
+		$lastStep = end($steps);
+		$preLastStep = prev($steps);
+		assert($preLastStep instanceof Table);
+		Assert::true($preLastStep->getZ()->getB()->isEqualTo(16));
 
 		Assert::equal(array(
 			array(
@@ -112,7 +120,8 @@ final class SolverTest extends TestCase
 
 		), $solver->getAlternativeSolutions());
 
-		Assert::true(next($steps)->getZ()->getB()->isEqualTo(16));
+		assert($lastStep instanceof Table);
+		Assert::true($lastStep->getZ()->getB()->isEqualTo(16));
 	}
 
 
@@ -163,8 +172,13 @@ final class SolverTest extends TestCase
 
 		), $solver->getSolution());
 
-		Assert::count(0, $solver->getAlternativeSolutions());
-		Assert::true(end($steps)->getZ()->getB()->isEqualTo(6000));
+		$altSolutions = $solver->getAlternativeSolutions();
+		assert(is_array($altSolutions));
+		Assert::count(0, $altSolutions);
+
+		$lastStep = end($steps);
+		assert($lastStep instanceof Table);
+		Assert::true($lastStep->getZ()->getB()->isEqualTo(6000));
 	}
 
 

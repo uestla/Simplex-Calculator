@@ -159,7 +159,7 @@ final class Fraction
 	public function absVal()
 	{
 		return new self(
-			bcmul($this->sgn(), $this->n),
+			bcmul((string) $this->sgn(), $this->n),
 			$this->d
 		);
 	}
@@ -259,7 +259,7 @@ final class Fraction
 
 		if (isset($dotParts[1])) {
 			$n = implode('', $dotParts);
-			$d = bcpow('10', strlen($dotParts[1]), 0);
+			$d = bcpow('10', (string) strlen($dotParts[1]), 0);
 
 		} else {
 			$n = $dotParts[0];

@@ -22,12 +22,13 @@ abstract class VariableSet
 	/** @param  array<string, Fraction|numeric> $set */
 	public function __construct(array $set)
 	{
+		$this->set = array();
+
 		foreach ($set as $var => $coeff) {
-			$set[$var] = Fraction::create($coeff);
+			$this->set[$var] = Fraction::create($coeff);
 		}
 
-		ksort($set);
-		$this->set = $set;
+		ksort($this->set);
 	}
 
 

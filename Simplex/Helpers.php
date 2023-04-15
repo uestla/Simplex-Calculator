@@ -45,7 +45,7 @@ final class Helpers
 		}
 
 		$gcd = self::gcdRecursive($a, $b);
-		return bcmul($gcd, self::sgn($gcd)); // abs
+		return bcmul($gcd, (string) self::sgn($gcd)); // abs
 	}
 
 
@@ -72,7 +72,7 @@ final class Helpers
 	 */
 	public static function sgn($n)
 	{
-		return bccomp($n, '0');
+		return bccomp((string) $n, '0');
 	}
 
 

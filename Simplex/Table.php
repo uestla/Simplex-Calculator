@@ -124,6 +124,12 @@ final class Table
 		}
 
 		$keyval = $this->z->getMin();
+
+		if ($keyval === null) {
+			$this->solution = false;
+			return true;
+		}
+
 		$keycol = array_search($keyval, $this->z->getSet(), true);
 
 		if ($keyval->isLowerThan('0')) {
@@ -166,7 +172,7 @@ final class Table
 	public function getAlternativeSolution()
 	{
 		if ($this->alternative === null) {
-			if (!$this->hasSolution()) {
+			if (!is_array($this->solution)) {
 				$this->alternative = false;
 
 			} else {
@@ -174,10 +180,14 @@ final class Table
 					if ($value->isEqualTo('0') && !in_array($var, $this->basis, true)) {
 						$clone = clone $this;
 
-						foreach ($clone->nextStep()->getSolution() as $v => $val) {
-							if (!$val->isEqualTo($this->solution[$v])) {
-								$this->alternative = $clone;
-								break 2;
+						$nextStepSolution = $clone->nextStep()->getSolution();
+
+						if (is_array($nextStepSolution)) {
+							foreach ($nextStepSolution as $v => $val) {
+								if (!$val->isEqualTo($this->solution[$v])) {
+									$this->alternative = $clone;
+									break 2;
+								}
 							}
 						}
 
