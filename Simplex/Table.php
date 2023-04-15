@@ -289,16 +289,10 @@ final class Table
 			$this->addRow(new TableRow($var, $meta[0], $meta[1]));
 		}
 
-		foreach (array('z', 'z2') as $zvar) {
-			if ($this->$zvar === null) continue;
+		$this->z = $this->transformZFunction($this->z, $keycol, $keyrow);
 
-			$zcoeffs = array();
-			$zdvd = $this->$zvar->get($keycol)->multiply(-1)->divide($keyrow->get($keycol));
-			foreach ($this->$zvar->getSet() as $v => $c) {
-				$zcoeffs[$v] = $zdvd->multiply($keyrow->get($v))->add($c);
-			}
-
-			$this->$zvar = new TableRow($this->$zvar->getVar(), $zcoeffs, $zdvd->multiply($keyrow->getB())->add($this->$zvar->getB()));
+		if ($this->z2 !== null) {
+			$this->z2 = $this->transformZFunction($this->z2, $keycol, $keyrow);
 		}
 
 		// find solution (if any)
@@ -324,6 +318,23 @@ final class Table
 		}
 
 		return $this;
+	}
+
+
+	/**
+	 * @param  string $keycol
+	 * @return TableRow
+	 */
+	private function transformZFunction(TableRow $z, $keycol, TableRow $keyrow)
+	{
+		$coeffs = array();
+		$dvd = $z->get($keycol)->multiply('-1')->divide($keyrow->get($keycol));
+
+		foreach ($z->getSet() as $v => $c) {
+			$coeffs[$v] = $dvd->multiply($keyrow->get($v))->add($c);
+		}
+
+		return new TableRow($z->getVar(), $coeffs, $dvd->multiply($keyrow->getB())->add($z->getB()));
 	}
 
 
