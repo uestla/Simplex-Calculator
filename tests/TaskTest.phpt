@@ -15,6 +15,7 @@ require_once __DIR__ . '/bootstrap.php';
 final class TaskTest extends TestCase
 {
 
+	/** @return void */
 	public function testRestrictionAndObjectiveVariablesMismatch()
 	{
 		Assert::exception(function () {

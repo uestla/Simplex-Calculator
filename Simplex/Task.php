@@ -21,11 +21,10 @@ final class Task
 	/** @var Restriction[] */
 	private $restrictions;
 
-	/** @var array */
+	/** @var array<string, int> */
 	private $basismap = array();
 
 
-	/** @param  Func $function */
 	public function __construct(Func $function)
 	{
 		$this->function = $function;
@@ -39,10 +38,7 @@ final class Task
 	}
 
 
-	/**
-	 * @param  Restriction $r
-	 * @return self
-	 */
+	/** @return self */
 	public function addRestriction(Restriction $r)
 	{
 		if ($r->getVariableList() !== $this->function->getVariableList()) {

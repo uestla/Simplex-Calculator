@@ -18,7 +18,7 @@ final class Helpers
 	/**
 	 * @param  numeric $a
 	 * @param  numeric $b
-	 * @return string
+	 * @return numeric-string
 	 */
 	public static function gcd($a, $b)
 	{
@@ -50,9 +50,9 @@ final class Helpers
 
 
 	/**
-	 * @param  string $a
-	 * @param  string $b
-	 * @return string
+	 * @param  numeric-string $a
+	 * @param  numeric-string $b
+	 * @return numeric-string
 	 */
 	private static function gcdRecursive($a, $b)
 	{
@@ -67,7 +67,7 @@ final class Helpers
 
 
 	/**
-	 * @param  string $n
+	 * @param  numeric $n
 	 * @return int -1, 0, 1
 	 */
 	public static function sgn($n)

@@ -17,6 +17,7 @@ require_once __DIR__ . '/bootstrap.php';
 final class SolverTest extends TestCase
 {
 
+	/** @return void */
 	public function testTask1()
 	{
 		$z = new Func(array(
@@ -62,6 +63,7 @@ final class SolverTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testTask2()
 	{
 		$z = new Func(array(
@@ -114,6 +116,7 @@ final class SolverTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testTask3()
 	{
 		$z = new Func(array(
@@ -165,6 +168,7 @@ final class SolverTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testTask4()
 	{
 		$z = new Func(array(
@@ -200,6 +204,7 @@ final class SolverTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testTask5()
 	{
 		// see https://github.com/uestla/Simplex-Calculator/issues/17

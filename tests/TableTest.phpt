@@ -15,6 +15,7 @@ require_once __DIR__ . '/bootstrap.php';
 final class TableTest extends TestCase
 {
 
+	/** @return void */
 	public function testObjectiveVariablesMismatch()
 	{
 		Assert::exception(function () {
@@ -32,6 +33,7 @@ final class TableTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testRowAndObjectiveVariablesMismatch()
 	{
 		Assert::exception(function () {

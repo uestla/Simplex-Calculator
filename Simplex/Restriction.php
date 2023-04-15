@@ -28,7 +28,7 @@ final class Restriction extends VariableSet
 
 
 	/**
-	 * @param  array $set
+	 * @param  array<string, Fraction|numeric> $set
 	 * @param  int $type
 	 * @param  Fraction|numeric $limit
 	 */

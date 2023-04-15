@@ -15,17 +15,14 @@ namespace Simplex;
 final class Solver
 {
 
-	/** @var array */
+	/** @var array<int, Task|Table> */
 	private $steps = array();
 
 	/** @var int */
 	private $maxSteps;
 
 
-	/**
-	 * @param  Task $task
- 	 * @param  int $maxSteps
-	 */
+	/** @param  int $maxSteps */
 	public function __construct(Task $task, $maxSteps = 16)
 	{
 		$this->maxSteps = (int) $maxSteps;
@@ -35,14 +32,14 @@ final class Solver
 	}
 
 
-	/** @return array */
+	/** @return array<int, Task|Table> */
 	public function getSteps()
 	{
 		return $this->steps;
 	}
 
 
-	/** @return array|bool|null */
+	/** @return array<string, Fraction>|false|null */
 	public function getSolution()
 	{
 		// find first table with a solution in steps
@@ -60,7 +57,7 @@ final class Solver
 	}
 
 
-	/** @return array|bool|null */
+	/** @return array<int, array<string, Fraction>>|false|null */
 	public function getAlternativeSolutions()
 	{
 		$first = false;

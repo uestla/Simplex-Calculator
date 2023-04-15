@@ -13,6 +13,7 @@ require_once __DIR__ . '/bootstrap.php';
 final class HelpersTest extends TestCase
 {
 
+	/** @return void */
 	public function testMain()
 	{
 		Assert::same(1, Helpers::sgn(7));

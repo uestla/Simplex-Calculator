@@ -15,11 +15,11 @@ namespace Simplex;
 abstract class VariableSet
 {
 
-	/** @var array */
+	/** @var array<string, Fraction> */
 	protected $set;
 
 
-	/** @param  array $set [ varname => fraction ] */
+	/** @param  array<string, Fraction|numeric> $set */
 	public function __construct(array $set)
 	{
 		foreach ($set as $var => $coeff) {
@@ -31,7 +31,7 @@ abstract class VariableSet
 	}
 
 
-	/** @return array */
+	/** @return array<string, Fraction> */
 	public function getSet()
 	{
 		return $this->set;

@@ -15,10 +15,10 @@ namespace Simplex;
 final class Fraction
 {
 
-	/** @var string */
+	/** @var numeric-string */
 	private $n;
 
-	/** @var string */
+	/** @var numeric-string */
 	private $d;
 
 
@@ -52,14 +52,14 @@ final class Fraction
 	}
 
 
-	/** @return string */
+	/** @return numeric-string */
 	public function getNumerator()
 	{
 		return $this->n;
 	}
 
 
-	/** @return string */
+	/** @return numeric-string */
 	public function getDenominator()
 	{
 		return $this->d;
@@ -235,7 +235,7 @@ final class Fraction
 
 	/**
 	 * @param  numeric $a
-	 * @return array{string, string}
+	 * @return array{numeric-string, numeric-string}
 	 */
 	private function factoryParts($a)
 	{

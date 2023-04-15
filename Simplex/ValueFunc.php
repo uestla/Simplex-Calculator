@@ -20,7 +20,7 @@ final class ValueFunc extends VariableSet
 
 
 	/**
-	 * @param  array $set
+	 * @param  array<string, Fraction|numeric> $set
 	 * @param  Fraction|numeric $value
 	 */
 	public function __construct(array $set, $value)

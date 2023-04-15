@@ -12,6 +12,7 @@ require_once __DIR__ . '/bootstrap.php';
 final class FractionTest extends TestCase
 {
 
+	/** @return void */
 	public function testScientificNotation()
 	{
 		Assert::same('1000', (string) new Fraction('1e3'));
@@ -21,6 +22,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testDivisionByZero()
 	{
 		Assert::exception(function () {
@@ -30,18 +32,21 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testFloatConversion1()
 	{
 		Assert::same('1/4', (string) new Fraction(0.25));
 	}
 
 
+	/** @return void */
 	public function testFloatConversion2()
 	{
 		Assert::same('7/50', (string) new Fraction(0.14));
 	}
 
 
+	/** @return void */
 	public function testNegativeDecimalCanonicalization()
 	{
 		$f = new Fraction(-0.25);
@@ -50,18 +55,21 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testNegativeNumeratorAndDenominatorCanonicalization()
 	{
 		Assert::same('1/4', (string) new Fraction(-0.25, -1));
 	}
 
 
+	/** @return void */
 	public function testDecimalDenominatorCanonicalization()
 	{
 		Assert::same('32', (string) new Fraction(8, 1/4));
 	}
 
 
+	/** @return void */
 	public function testAddition()
 	{
 		$a = new Fraction(1, 4);
@@ -72,6 +80,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testMultiplication()
 	{
 		$a = new Fraction(1, 4);
@@ -82,6 +91,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testNegation()
 	{
 		$a = new Fraction(1/4);
@@ -90,6 +100,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testDivision()
 	{
 		$a = new Fraction(1, 4);
@@ -99,6 +110,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testSgnAndAbs()
 	{
 		$a = new Fraction(-1/4);
@@ -108,6 +120,7 @@ final class FractionTest extends TestCase
 	}
 
 
+	/** @return void */
 	public function testComparison()
 	{
 		$a = new Fraction(2, 3);
@@ -120,7 +133,11 @@ final class FractionTest extends TestCase
 	}
 
 
-	/** @dataProvider getFloatsScientificNotation */
+	/**
+	 * @dataProvider provideFloatsScientificNotation
+	 * @param  scalar $i
+	 * @return void
+	 */
 	public function testFloatsScientificNotation($i)
 	{
 		Assert::exception(function () use ($i) {
@@ -130,7 +147,11 @@ final class FractionTest extends TestCase
 	}
 
 
-	/** @dataProvider getNonNumericArguments */
+	/**
+	 * @dataProvider provideNonNumericArguments
+	 * @param  scalar $a
+	 * @return void
+	 */
 	public function testNonNumericArguments($a)
 	{
 		Assert::exception(function () use ($a) {
@@ -142,7 +163,8 @@ final class FractionTest extends TestCase
 
 	// === data providers =====================================================
 
-	public function getNonNumericArguments()
+	/** @return array<int, array<int, scalar|null>> */
+	public function provideNonNumericArguments()
 	{
 		return array(
 			array('ASDF'),
@@ -156,7 +178,8 @@ final class FractionTest extends TestCase
 	}
 
 
-	public function getFloatsScientificNotation()
+	/** @return array<int, scalar[]> */
+	public function provideFloatsScientificNotation()
 	{
 		return array(
 			array(PHP_INT_MAX + 1),

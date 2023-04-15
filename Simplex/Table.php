@@ -27,17 +27,13 @@ final class Table
 	/** @var string[] */
 	private $basis = array();
 
-	/** @var array|bool */
+	/** @var array<string, Fraction>|false */
 	private $solution;
 
-	/** @var array|bool */
+	/** @var self|bool */
 	private $alternative;
 
 
-	/**
-	 * @param  ValueFunc $z
-	 * @param  ValueFunc $z2
-	 */
 	public function __construct(ValueFunc $z, ValueFunc $z2 = null)
 	{
 		if ($z2 !== null && $z2->getVariableList() !== $z->getVariableList()) {
@@ -77,10 +73,7 @@ final class Table
 	}
 
 
-	/**
-	 * @param  TableRow $row
-	 * @return self
-	 */
+	/** @return self */
 	public function addRow(TableRow $row)
 	{
 		if ($row->getVariableList() !== $this->z->getVariableList()
@@ -148,7 +141,7 @@ final class Table
 	}
 
 
-	/** @return array|bool|null */
+	/** @return array<string, Fraction>|false|null */
 	public function getSolution()
 	{
 		return $this->solution;

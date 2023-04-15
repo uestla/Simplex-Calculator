@@ -24,7 +24,7 @@ final class TableRow extends VariableSet
 
 	/**
 	 * @param  string $var
-	 * @param  array $set
+	 * @param  array<string, Fraction|numeric> $set
 	 * @param  Fraction|numeric $b
 	 */
 	public function __construct($var, array $set, $b)
