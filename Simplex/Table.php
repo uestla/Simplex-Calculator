@@ -285,6 +285,8 @@ final class Table
 		}
 
 		$this->rows = array();
+		$this->basis = array();
+
 		foreach ($newrows as $var => $meta) {
 			$this->addRow(new TableRow($var, $meta[0], $meta[1]));
 		}
