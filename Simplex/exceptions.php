@@ -58,5 +58,16 @@ final class ScientificFloatException extends SimplexException
 }
 
 
+final class EmptyVectorException extends SimplexException
+{
+
+	public function __construct()
+	{
+		parent::__construct('Vector must have at least one value.');
+	}
+
+}
+
+
 abstract class SimplexException extends \Exception
 {}
